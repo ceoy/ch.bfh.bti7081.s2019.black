@@ -9,7 +9,7 @@ Team Project MHC-PMS
 * [Klembowski Raphael](https://github.com/DerRaphe)
 * [Sutter Christoph-Erich](https://github.com/suttc1)
 * [Jahn Tim Allan](https://github.com/ceoy)
-* [Ristic Nikola](https://github.com/?)
+* [Ristic Nikola](https://github.com/nristicBFH)
 
 ## Patient Management System
 
