@@ -1,0 +1,8 @@
+18.03.2019: 
+    - Interview Questions
+    - ..
+
+prepare interview:
+    - team
+    - 20.03.2019
+    - in progress
