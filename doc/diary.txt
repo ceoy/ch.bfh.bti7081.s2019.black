@@ -8,3 +8,8 @@ prepare interview:
     - who: all
     - deadline: 20.03.2019
     - status: in progress
+
+do interview
+    - person 1
+        - who: tim jahn
+        - when: 21.03.2019
