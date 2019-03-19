@@ -1,8 +1,10 @@
 18.03.2019: 
-    - Interview Questions
-    - ..
+    - duration: ~30 mins 
+    - attendance: all
+    - prepare interview questions
+    - set up teamchat
 
 prepare interview:
-    - team
-    - 20.03.2019
-    - in progress
+    - who: all
+    - deadline: 20.03.2019
+    - status: in progress
