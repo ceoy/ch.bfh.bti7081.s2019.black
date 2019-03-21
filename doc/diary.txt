@@ -7,9 +7,15 @@
 prepare interview:
     - who: all
     - deadline: 20.03.2019
-    - status: in progress
+    - status: done
 
-do interview
+conduct interview:
     - person 1
         - who: tim jahn
         - when: 21.03.2019
+        - progress: done
+
+    - person 2
+        - who: nikola ristic
+        - when: 20.03.2019
+        - progress: done
