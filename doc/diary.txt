@@ -4,10 +4,18 @@
     - prepare interview questions
     - set up teamchat
 
-prepare interview:
+25.03.2019
+    - duration: ~2 mins
+    - attendance:
+        - all
+    - defined scope
+    - define personas
+
+storyboard:
+    - what: each teammember creates 2 storyboards
     - who: all
-    - deadline: 20.03.2019
-    - status: done
+    - deadline: 27.03.2019
+    - status: in progress
 
 conduct interview:
     - person 1
@@ -19,3 +27,8 @@ conduct interview:
         - who: nikola ristic
         - when: 20.03.2019
         - progress: done
+
+prepare interview:
+    - who: all
+    - deadline: 20.03.2019
+    - status: done
