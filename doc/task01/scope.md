@@ -2,9 +2,9 @@
 
 ## Probleme
 
-* Die Verlaufsberichte müssen evaluiert werden -> dies wird nicht immer * gemacht.  
+* Die Verlaufsberichte müssen evaluiert werden -> dies wird nicht immer gemacht.  
 * Periodische Evaluationsmeldung (muss ein Patient evaluiert werden).  
-* Die Kommunikation zwischen allen beteiligten Parteien ist nicht immer * leicht.  
+* Die Kommunikation zwischen allen beteiligten Parteien ist nicht immer leicht.  
 * Verlaufsberichte sind nicht detaliert genug.  
 * Was braucht der Patient? (medis)  
 * Infos zum Patient (medis).  
