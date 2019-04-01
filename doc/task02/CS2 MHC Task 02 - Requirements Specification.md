@@ -4,14 +4,14 @@
 
 ## Requirements Specification
 
-* Preface
+### Preface
 
 Dieses Dokument richtet sich an alle involvierten Teammitglieder des Projektes “Spitex Organizer“. Es inkludiert neben dem Team Black auch die Seite des Anwenders welche durch unsere Dozenten repräsentiert wird. Das Dokument soll jedoch auch für Laien verständlich und interpretierbar sein.
 
-** Versionsverlauf:
+#### Versionsverlauf:
 Version 0.1: Initialdokument, Inhaltspunkte, Introduction, 
 
-* Introduction
+### Introduction
 
 Die Software "Spitex Organizer" des Teams Black soll die tägliche Arbeit von Spitexmitarbeitern bestmöglichst vereinfachen. Insbesondere liegt der Schwerpunkt der Software, soweit möglich, auf dem Krankheitsbild von Zwangsstörungen der "Obsessive Compulsive Disorder" oder kurz "OCD".
 
@@ -22,27 +22,25 @@ Der "Spitex Organizer" ist überwiegend eine anwenderspezifische Software mit mög
 In einem weiterführenden Projekt kann die Software mit einer Schnittstelle ausgestattet werden um ein bereits bestehendes System zu erweitern.
 
 
-* Glossary
+### Glossary
 
 | Abkürzungen | Bedeutung |
 |:------------|----------:|
 
 
 
-* User requirements definition (functional/non-functional)
+### User requirements definition (functional/non-functional)
 
+### System architecture
 
+### System requirements specification
 
-* System architecture
+### System models
 
-* System requirements specification
+### System evolution
 
-* System models
+### Testing
 
-* System evolution
+### Appendices
 
-* Testing
-
-* Appendices
-
-* Index
+### Index
