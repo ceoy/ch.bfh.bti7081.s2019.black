@@ -13,13 +13,15 @@ Version 0.1: Initialdokument, Inhaltspunkte, Introduction,
 
 ### Introduction
 
-Die Software "Spitex Organizer" des Teams Black soll die tägliche Arbeit von Spitexmitarbeitern bestmöglichst vereinfachen. Insbesondere liegt der Schwerpunkt der Software, soweit möglich, auf dem Krankheitsbild von Zwangsstörungen der "Obsessive Compulsive Disorder" oder kurz "OCD".
+Die Software "Spitex Organizer" des Teams Black soll die tägliche Arbeit von Spitexmitarbeitern bestmöglichst vereinfachen und somit zur Verbesserung der Arbeitsbedingungen wie auch zur Wirtschaftlichkeit beitragen.
 
-Die Kernfunktionen umfassen insbesondere die Darstellung der Tages- und Wochenplanungen der Spitexmitarbeiter so wie deren, beim Patienten, zu erledigenden Tasks. Zusätzlich legt die Applikation besonderen Fokus auf das Rapportieren und das periodische Evaluieren der Patienten.
+Insbesondere liegt der Schwerpunkt der Software, soweit möglich, auf dem Krankheitsbild von Zwangsstörungen der "Obsessive Compulsive Disorder" oder kurz "OCD". Die Kernfunktionen umfassen insbesondere die Darstellung der Tages- und Wochenplanungen der Spitexmitarbeiter so wie deren, beim Patienten, zu erledigenden Tasks. Zusätzlich legt die Applikation besonderen Fokus auf das Rapportieren und das periodische Evaluieren der Patienten.
 
 Der "Spitex Organizer" ist überwiegend eine anwenderspezifische Software mit möglichst einfacher und intuitiver Bedienung für die benutzende Person und soll sowohl in einem Browser wie auch auf einem Tablett genutzt werden können.
 
-In einem weiterführenden Projekt kann die Software mit einer Schnittstelle ausgestattet werden um ein bereits bestehendes System zu erweitern.
+Die App soll die Spitexmitarbeiter bei der täglichen Arbeit unterstützen und jederzeit Einblicke in die zu erledigenden Arbeiten wie auch Patientendaten ermöglichen. Ebenso soll sie die Mitarbeiter bei der täglichen Rapportierung unterstützen. Auf diesem Weg soll die Planung vereinfacht, die Effizienz und somit die Wirtschaftlichkeit gesteigert und im gleichen Zug die Arbeitsbedingungen verbessert werden.
+
+In einem weiterführenden Projekt kann die Software mit einer Schnittstelle ausgestattet werden. Somit könnte der "Spitex Organizer" auch in bereits bestehende Systeme integriert werden.
 
 
 ### Glossary
