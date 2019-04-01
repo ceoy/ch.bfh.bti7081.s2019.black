@@ -11,6 +11,12 @@
     - defined scope
     - define personas
 
+27.03.2019
+    - duration: 1.5h
+    - attendance:
+        - all
+    - create prototype
+
 storyboard:
     - what: each teammember creates 2 storyboards
     - who: all
