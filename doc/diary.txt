@@ -1,8 +1,16 @@
-18.03.2019: 
-    - duration: ~30 mins 
-    - attendance: all
-    - prepare interview questions
-    - set up teamchat
+01.04.2019
+    - duration: 1.5h
+    - attendance:
+        - all but nikola
+    - started with requirements specification
+    - created use case diagram
+    - specified use cases
+
+27.03.2019
+    - duration: 1.5h
+    - attendance:
+        - all
+    - create prototype
 
 25.03.2019
     - duration: ~2 mins
@@ -11,17 +19,23 @@
     - defined scope
     - define personas
 
-27.03.2019
-    - duration: 1.5h
-    - attendance:
-        - all
-    - create prototype
+18.03.2019: 
+    - duration: ~30 mins 
+    - attendance: all
+    - prepare interview questions
+    - set up teamchat
+
+requirements specification & presentation:
+    - what: finish requirements specification
+    - who: all
+    - deadline: 08.04.2019
+    - status: in progress
 
 storyboard:
     - what: each teammember creates 2 storyboards
     - who: all
     - deadline: 27.03.2019
-    - status: in progress
+    - status: done
 
 conduct interview:
     - person 1

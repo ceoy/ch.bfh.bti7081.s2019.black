@@ -10,7 +10,8 @@ Dieses Dokument richtet sich an alle involvierten Teammitglieder des Projektes "
 | Version | Changelog | Date |
 |:--------|-----------|-----:|
 |  0.1 | Initialdokument, Inhaltspunkte, Introduction | 01.04.2019 |
-| 0.2 | Versionsverlauf-styling update | 01.04.2019 | 
+| 0.2 | Versionsverlauf-styling update | 01.04.2019 |
+| 0.3 | Systemarchitektur hinzugefügt | 05.04.2019 |  
 
 
 ### Introduction
@@ -29,17 +30,38 @@ In einem weiterfährenden Projekt kann die Software mit einer Schnittstelle ausg
 ### Glossary
 
 | Abkürzungen | Bedeutung |
-|:------------|----------:|
+|:------------|:----------|
 
 
 
 ### User requirements definition (functional/non-functional)
 
 ### System architecture
-TODO
-Übersicht Komponente (DB, Browser, App...)
+
+![Assets](assets/systemarchitecture.png)
+
+#### Client
+
+Der Benutzer muss irgendwie auf die Applikation zugreifen. Dies macht er durch einen Client, welcher in dem meisten Fällen ein Browser sein wird.
+
+#### WebApp
+
+Die Applikation, welche die Business Logik ausführt und mit der Datenbank kommuniziert.  
+Sie antwortet auf Requests vom Client.
+
+#### Database
+
+Die Datenbank speichert alle benötigten Information über:
+- Patienten
+- Termine
+- Verlaufsberichte
+- Evaluationen
+- etc.
+
 ### System requirements specification
+
 Functional Requirements
+
 - Das System überprüft periodisch ob für einen Patienten eine Evalutation fällig ist. 
 - Das System ist in der Lage Daten in eine Datenbank zu speichern. 
 - Das System ist in der Lage Patientendaten anzuzeigen.
@@ -50,21 +72,27 @@ Functional Requirements
 - Das System ist in der Lage die Eingabefelder zu validieren.
 
 Non-Functional Requirements 
+
 - Das System hat eine benutzerfreundliche Oberfläche.
 - Das System ist in der Lage dem Benutzer Fehlermeldungen zu liefern, wenn die Eingaben fehlerhaft sind.
 - Das System ist intuitiv. 
-- Das System ist responsible. 
+- Das System ist responsive.
 
 ### System models
+
 TODO
 (Klassen)
 - Patient
 - Evaluation
 - Verlauf
+
 ### System evolution
+
 TODO
 - wie kann sich das System entwickeln (ev. Sicherheitsmechanismus mit Login, elektronische Patientendossiers, Zusammenspiel mit Krankenkasse, )
+
 ### Testing
+
 Testfälle Functional Requirements
 
 
