@@ -36,7 +36,8 @@ In einem weiterfährenden Projekt kann die Software mit einer Schnittstelle ausg
 ### User requirements definition (functional/non-functional)
 
 ### System architecture
-
+TODO
+Übersicht Komponente (DB, Browser, App...)
 ### System requirements specification
 Functional Requirements
 - Das System überprüft periodisch ob für einen Patienten eine Evalutation fällig ist. 
@@ -55,9 +56,14 @@ Non-Functional Requirements
 - Das System ist responsible. 
 
 ### System models
-
+TODO
+(Klassen)
+- Patient
+- Evaluation
+- Verlauf
 ### System evolution
-
+TODO
+- wie kann sich das System entwickeln (ev. Sicherheitsmechanismus mit Login, elektronische Patientendossiers, Zusammenspiel mit Krankenkasse, )
 ### Testing
 Testfälle Functional Requirements
 
