@@ -38,6 +38,15 @@ In einem weiterfährenden Projekt kann die Software mit einer Schnittstelle ausg
 ### System architecture
 
 ### System requirements specification
+Functional Requirements
+- Das System überprüft periodisch ob für einen Patienten eine Evalutation fällig ist. 
+- Das System ist in der Lage Daten in eine Datenbank zu speichern. 
+- Das System ist in der Lage Patientendaten anzuzeigen.
+- Das System ist in der Lage Verlaufsberichte zu anzeigen. 
+- Das System ist in der Lage Verlaufsberichte zu erstellen. 
+- Das System ist in der Lage Google Maps zu öffnen und die Route zum Patienten anzuzeigen. 
+- 
+Non-Functional Requirements 
 
 ### System models
 
