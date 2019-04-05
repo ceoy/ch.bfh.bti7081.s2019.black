@@ -45,8 +45,14 @@ Functional Requirements
 - Das System ist in der Lage Verlaufsberichte zu anzeigen. 
 - Das System ist in der Lage Verlaufsberichte zu erstellen. 
 - Das System ist in der Lage Google Maps zu öffnen und die Route zum Patienten anzuzeigen. 
-- 
+- Das System ist in der Lage die Wochenplanung vom Spitexmitarbeiter anzuzeigen.
+- *Das System ist in der Lage die Eingabefelder zu validieren.
+
 Non-Functional Requirements 
+- Das System hat eine benutzerfreundliche Oberfläche.
+- Das System ist in der Lage dem Benutzer Fehlermeldungen zu liefern, wenn die Eingaben fehlerhaft sind.
+- Das System ist intuitiv. 
+- Das System ist responsible. 
 
 ### System models
 
