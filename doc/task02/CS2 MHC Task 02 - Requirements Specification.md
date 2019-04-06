@@ -93,7 +93,7 @@ TODO
   - Zeitstempel
   
 - Verlauf
- - Patient, Verlauf, Zeitstempel, Spitexmitarbeiterin
+  - Patient, Verlauf, Zeitstempel, Spitexmitarbeiterin
 
 ### System evolution
 
