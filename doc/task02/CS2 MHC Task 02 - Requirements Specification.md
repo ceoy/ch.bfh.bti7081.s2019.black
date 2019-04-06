@@ -12,6 +12,7 @@ Dieses Dokument richtet sich an alle involvierten Teammitglieder des Projektes "
 |  0.1 | Initialdokument, Inhaltspunkte, Introduction | 01.04.2019 |
 | 0.2 | Versionsverlauf-styling update | 01.04.2019 |
 | 0.3 | Systemarchitektur hinzugefügt | 05.04.2019 |  
+| 0.4 | System Models und System Evolution hinzugefügt | 06.04.2019 |  
 
 
 ### Introduction
@@ -83,13 +84,25 @@ Non-Functional Requirements
 TODO
 (Klassen)
 - Patient
+  - Name, Vorname, Wohnadresse, Alter, Telefon, Krankheit, Medikamente
+  
+- Spitexmitarbeiter
+  - Name, Vorname, Benutzername, Passwort, Telefon
+  
 - Evaluation
+  - Zeitstempel
+  
 - Verlauf
+ - Patient, Verlauf, Zeitstempel, Spitexmitarbeiterin
 
 ### System evolution
 
 TODO
 - wie kann sich das System entwickeln (ev. Sicherheitsmechanismus mit Login, elektronische Patientendossiers, Zusammenspiel mit Krankenkasse, )
+- Man kann im System einen Arbeitsplan (Kalenderform) für jeden Spitexmitarbeiter erstellen
+- Automatisierte erstellung von Routen zu, welchen Patienten man am besten gehen sollte, um Zeit zu sparen
+- Durch den Zeitstempel im Rapport, wird direkt eine Rechnung für die Krankenkasse erstellt
+- Evaluations vergleich von mehreren Monaten, um einen Fortschritt der Behandlung zu erkennen
 
 ### Testing
 
