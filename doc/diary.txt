@@ -4,6 +4,11 @@
         - alle aussert raphael
     - präsentation vorbereiten und präsentieren
     - requirements specification fertig gemacht
+    
+07.04.2019
+    - dauer: 5h
+    - wer: chrigu
+    - requirements specification ausarbeiten
 
 05.04.2019
     - dauer: 30min
