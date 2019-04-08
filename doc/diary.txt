@@ -1,54 +1,70 @@
+07.04.2019
+    - dauer: 1.5h
+    - anwesenheit:
+        - alle aussert raphael
+    - präsentation vorbereiten und präsentieren
+    - requirements specification fertig gemacht
+
+05.04.2019
+    - dauer: 30min
+    - anwesenheit:
+        - alle aussert tim and nikola
+    - requirements specifications erweitert
+    - planung fürs wochenende
+
 01.04.2019
-    - duration: 1.5h
-    - attendance:
-        - all but nikola
-    - started with requirements specification
-    - created use case diagram
-    - specified use cases
+    - dauer: 1.5h
+    - anwesenheit:
+        - alle aussert nikola
+    - angefangen mit requirements specification
+    - erstellen von use case diagramm
+    - use cases spezifiziert
 
 27.03.2019
-    - duration: 1.5h
-    - attendance:
-        - all
-    - create prototype
+    - dauer: 1.5h
+    - anwesenheit:
+        - alle
+    - prototype erstellt
 
 25.03.2019
-    - duration: ~2 mins
-    - attendance:
-        - all
-    - defined scope
-    - define personas
+    - dauer: ~2 mins
+    - anwesenheit:
+        - alle
+    - scope definiert
+    - personas definiert
 
 18.03.2019: 
-    - duration: ~30 mins 
-    - attendance: all
-    - prepare interview questions
-    - set up teamchat
+    - dauer: ~30 mins 
+    - anwesenheit: all
+    - interview fragen vorbereitet
+    - teamchat erstellt
 
-requirements specification & presentation:
-    - what: finish requirements specification
-    - who: all
+--- 
+
+requirements specification & präsentation:
+    - was: requirements specification fertig machen
+    - wer: alle
     - deadline: 08.04.2019
-    - status: in progress
+    - status: fertig
 
 storyboard:
-    - what: each teammember creates 2 storyboards
-    - who: all
+    - was: jedes teammitglied erstellt 2 storyboards
+    - wer: alle
     - deadline: 27.03.2019
-    - status: done
+    - status: fertig
 
-conduct interview:
+interview durchführen:
     - person 1
-        - who: tim jahn
-        - when: 21.03.2019
-        - progress: done
+        - wer: tim jahn
+        - wann: 21.03.2019
+        - status: fertig
 
     - person 2
-        - who: nikola ristic
-        - when: 20.03.2019
-        - progress: done
+        - wer: nikola ristic
+        - wann: 20.03.2019
+        - status: fertig
 
-prepare interview:
-    - who: all
+interview vorbereiten:
+    - wer: alle
     - deadline: 20.03.2019
-    - status: done
+    - status: fertig
