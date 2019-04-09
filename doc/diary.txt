@@ -1,3 +1,9 @@
+10.04.2019
+    - dauer: 1.5h
+    - anwesenheit:
+        - Ueli
+    - Bearbeiten der Revie für Team White
+
 07.04.2019
     - dauer: 1.5h
     - anwesenheit:
@@ -8,6 +14,11 @@
 07.04.2019
     - dauer: 5h
     - wer: chrigu
+    - requirements specification ausarbeiten
+    
+06.04.2019
+    - dauer: 1h
+    - wer: Ueli
     - requirements specification ausarbeiten
 
 05.04.2019
