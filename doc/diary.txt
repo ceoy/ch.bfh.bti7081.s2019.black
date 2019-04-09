@@ -1,8 +1,8 @@
 10.04.2019
-    - dauer: 1.5h
+    - dauer: 2h
     - anwesenheit:
         - Ueli
-    - Bearbeiten der Revie für Team White
+    - Bearbeiten der Review für Team White
 
 07.04.2019
     - dauer: 1.5h
