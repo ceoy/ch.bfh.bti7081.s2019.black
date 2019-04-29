@@ -1,3 +1,13 @@
+27.04.2019
+    - dauer: 4h
+    - anwesenheit:
+    	- Raji
+    	- Raphael
+    	- Tim
+    	- Ueli
+    	- Chrigu
+    - ausarbeitung UML diagramme für task04
+    
 10.04.2019
     - dauer: 2h
     - anwesenheit:
