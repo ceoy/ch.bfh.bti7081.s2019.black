@@ -1,3 +1,10 @@
+01.05.2019
+	- dauer: 1h
+	- anwesenheit:
+		- Chrigu
+		- Ueli
+	- vorbereitung task5&6
+
 27.04.2019
     - dauer: 4h
     - anwesenheit:
