@@ -1,4 +1,11 @@
 02.05.2019
+	- dauer 2h
+	- erstellt von
+		- Rajilatha 
+		- Nikola Ristic
+	- 1. Sprint planung
+
+02.05.2019
 	- dauer: 2h
 	- anwesenheit:
 		- Ueli
@@ -10,6 +17,7 @@
 		- Chrigu
 		- Ueli
 	- vorbereitung task5&6
+	
 
 27.04.2019
     - dauer: 4h
@@ -19,19 +27,19 @@
     	- Tim
     	- Ueli
     	- Chrigu
-    - ausarbeitung UML diagramme f�r task04
+    - ausarbeitung UML diagramme für task04
     
 10.04.2019
     - dauer: 2h
     - anwesenheit:
         - Ueli
-    - Bearbeiten der Review für Team White
+    - Bearbeiten der Review fÃ¼r Team White
 
 07.04.2019
     - dauer: 1.5h
     - anwesenheit:
         - alle aussert raphael
-    - präsentation vorbereiten und präsentieren
+    - prÃ¤sentation vorbereiten und prÃ¤sentieren
     - requirements specification fertig gemacht
     
 07.04.2019
@@ -49,7 +57,7 @@
     - anwesenheit:
         - alle aussert tim and nikola
     - requirements specifications erweitert
-    - planung fürs wochenende
+    - planung fÃ¼rs wochenende
 
 01.04.2019
     - dauer: 1.5h
@@ -80,7 +88,7 @@
 
 --- 
 
-requirements specification & präsentation:
+requirements specification & prÃ¤sentation:
     - was: requirements specification fertig machen
     - wer: alle
     - deadline: 08.04.2019
@@ -92,7 +100,7 @@ storyboard:
     - deadline: 27.03.2019
     - status: fertig
 
-interview durchführen:
+interview durchfÃ¼hren:
     - person 1
         - wer: tim jahn
         - wann: 21.03.2019
