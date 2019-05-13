@@ -28,12 +28,13 @@ public class DataInit implements ApplicationRunner {
             Appointment p1 = new Appointment();
 
             p1.setStart(LocalDateTime.now());
-
-            //
+            p1.setEnd(LocalDateTime.now());
+            
             Appointment p2 = new Appointment();
 
             p2.setStart(LocalDateTime.now());
 
+            p2.setEnd(LocalDateTime.now());
             appointmentRepository.save(p1);
             appointmentRepository.save(p2);
         }

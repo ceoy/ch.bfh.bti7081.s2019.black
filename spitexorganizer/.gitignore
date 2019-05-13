@@ -27,6 +27,8 @@ target/
 
 ### VS Code ###
 .vscode/
+/bin/
 
 ### macOS ###
 .DS_Store
+
