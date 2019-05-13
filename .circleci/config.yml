@@ -26,7 +26,7 @@ jobs:
 
     steps:
       - checkout:
-        path: ~/project
+          path: ~/project
       
 
       # Download and cache dependencies
