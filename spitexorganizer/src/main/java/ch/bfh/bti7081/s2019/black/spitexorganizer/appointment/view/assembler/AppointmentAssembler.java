@@ -10,15 +10,15 @@ import java.util.List;
 @Component
 public class AppointmentAssembler {
 
-    public List<AppointmentDto> toDtos(List<Appointment> appointments){
-        List<AppointmentDto> appointmentDtos=new ArrayList<>();
-        for (Appointment appointment:appointments){
+    public List<AppointmentDto> toDtos(List<Appointment> appointments) {
+        List<AppointmentDto> appointmentDtos = new ArrayList<>();
+        for (Appointment appointment : appointments) {
             appointmentDtos.add(toDto(appointment));
         }
         return appointmentDtos;
     }
 
-    public AppointmentDto toDto(Appointment appointment){
+    private AppointmentDto toDto(Appointment appointment) {
         AppointmentDto appointmentDto = new AppointmentDto();
         appointmentDto.setId(appointment.getId());
         appointmentDto.setStart(appointment.getStart());
