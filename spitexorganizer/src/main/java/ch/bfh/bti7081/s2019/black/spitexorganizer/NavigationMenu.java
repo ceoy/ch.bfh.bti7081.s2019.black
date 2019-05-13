@@ -18,8 +18,8 @@ public class NavigationMenu extends Div implements RouterLayout {
     HorizontalLayout menu = new HorizontalLayout();
     HorizontalLayout buttonContainer = new HorizontalLayout();
     public NavigationMenu(){
-        addMenuElement(AppointmentView.class, "Appointments");
-        addMenuElement(TestView.class, "TEST");
+        addMenuElement(AppointmentView.class, "Wochenplanung");
+        addMenuElement(TestView.class, "Evaluation");
         buttonContainer.getStyle().set("margin", "auto");
         menu.add(buttonContainer);
         add(menu);
