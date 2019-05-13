@@ -4,7 +4,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import ch.bfh.bti7081.s2019.black.spitexorganizer.evaluation.model.Evaluation;
 
 @Entity
 @Table(name="REPORT")
@@ -20,6 +23,10 @@ public class Report {
   @Column(name = "Description", nullable = false)
   private String description;
 
+  @ManyToOne
+  @JoinColumn(name = "evaluation_id")
+  private Evaluation evaluation;
+  
   public Long getId() {
     return id;
   }

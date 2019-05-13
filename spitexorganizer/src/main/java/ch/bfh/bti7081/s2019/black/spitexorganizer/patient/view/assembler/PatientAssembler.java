@@ -2,11 +2,16 @@ package ch.bfh.bti7081.s2019.black.spitexorganizer.patient.view.assembler;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.evaluation.view.assembler.EvaluationAssembler;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.patient.model.Patient;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.patient.view.dtos.PatientDto;
 
 public class PatientAssembler {
+  
+  @Autowired
+  EvaluationAssembler evaluationAssembler;
+  
   public List<PatientDto> toDtos(List<Patient> evaluations){
     List<PatientDto> evaluationDtos=new ArrayList<PatientDto>();
     for (Patient evaluation:evaluations){
@@ -17,7 +22,6 @@ public class PatientAssembler {
 
   public PatientDto toDto(Patient patient) {
     PatientDto patientDtos = new PatientDto();
-    EvaluationAssembler evaluationAssembler = new EvaluationAssembler();
     patientDtos.setId(patient.getId());
     patientDtos.setCity(patient.getCity());
     patientDtos.setMail(patient.getMail());

@@ -6,7 +6,7 @@ import javax.persistence.*;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.evaluation.model.Evaluation;
 
 @Entity
-@Table(name="PATIENT")
+@Table(name="patient")
 public class Patient {
   @Id
   @GeneratedValue
@@ -33,8 +33,8 @@ public class Patient {
   
   @Column(name = "City", nullable = false)
   private String city;
-
-  @OneToMany
+  
+  @OneToMany(fetch = FetchType.EAGER, mappedBy = "patient",cascade = CascadeType.ALL)
   @Column(name = "Evaluations", nullable = false)
   private List<Evaluation> evaluations;
   

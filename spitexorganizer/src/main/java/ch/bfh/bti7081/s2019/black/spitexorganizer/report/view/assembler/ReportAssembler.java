@@ -2,9 +2,11 @@ package ch.bfh.bti7081.s2019.black.spitexorganizer.report.view.assembler;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.stereotype.Component;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.report.model.Report;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.report.view.dtos.ReportDto;
 
+@Component
 public class ReportAssembler {
   public List<ReportDto> toDtos(List<Report> reports){
     List<ReportDto> reportDtos=new ArrayList<ReportDto>();

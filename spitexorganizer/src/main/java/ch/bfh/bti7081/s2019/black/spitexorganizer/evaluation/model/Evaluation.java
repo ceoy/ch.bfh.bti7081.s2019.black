@@ -2,11 +2,11 @@ package ch.bfh.bti7081.s2019.black.spitexorganizer.evaluation.model;
 
 import java.util.List;
 import javax.persistence.*;
-
+import ch.bfh.bti7081.s2019.black.spitexorganizer.patient.model.Patient;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.report.model.Report;
 
 @Entity
-@Table(name="EVALUATION")
+@Table(name="evaluation")
 public class Evaluation {
   @Id
   @GeneratedValue
@@ -17,11 +17,14 @@ public class Evaluation {
   private String text;
 
 
-
-  @OneToMany
+  @OneToMany(fetch = FetchType.EAGER, mappedBy = "evaluation",cascade = CascadeType.ALL)
   @Column(name = "Reports", nullable = false)
   private List<Report> reports;
 
+  @ManyToOne
+  @JoinColumn(name = "patient_id")
+  private Patient patient;
+  
   public Long getId() {
     return id;
   }
