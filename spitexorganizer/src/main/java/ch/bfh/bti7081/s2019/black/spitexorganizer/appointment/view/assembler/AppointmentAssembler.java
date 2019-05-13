@@ -2,6 +2,7 @@ package ch.bfh.bti7081.s2019.black.spitexorganizer.appointment.view.assembler;
 
 import ch.bfh.bti7081.s2019.black.spitexorganizer.appointment.model.Appointment;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.appointment.view.dtos.AppointmentDto;
+import ch.bfh.bti7081.s2019.black.spitexorganizer.task.view.assembler.TaskAssembler;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -20,8 +21,11 @@ public class AppointmentAssembler {
 
     public AppointmentDto toDto(Appointment appointment){
         AppointmentDto appointmentDto = new AppointmentDto();
+        TaskAssembler taskAssembler = new TaskAssembler();
         appointmentDto.setId(appointment.getId());
         appointmentDto.setStart(appointment.getStart());
+        appointmentDto.setEnd(appointment.getEnd());
+        appointmentDto.setTasks(taskAssembler.toDtos(appointment.getTasks()));
         return appointmentDto;
     }
 }
