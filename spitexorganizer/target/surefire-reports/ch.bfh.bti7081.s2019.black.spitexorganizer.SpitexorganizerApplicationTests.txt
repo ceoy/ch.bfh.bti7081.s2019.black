@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: ch.bfh.bti7081.s2019.black.spitexorganizer.SpitexorganizerApplicationTests
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.034 s - in ch.bfh.bti7081.s2019.black.spitexorganizer.SpitexorganizerApplicationTests
