@@ -1,13 +1,17 @@
 package ch.bfh.bti7081.s2019.black.spitexorganizer.appointment.ui;
 
+import ch.bfh.bti7081.s2019.black.spitexorganizer.NavigationMenu;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.appointment.api.AppointmentApi;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.appointment.view.dtos.AppointmentDto;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.NativeButton;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.router.RouterLayout;
+import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.server.PWA;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,9 +21,9 @@ import java.util.logging.Logger;
 /**
  * The main view contains a button and a click listener.
  */
-@Route("")
+@Route(value = "", layout = NavigationMenu.class)
 @PWA(name = "Project Base for Vaadin Flow", shortName = "Project Base")
-public class AppointmentView extends VerticalLayout {
+public class AppointmentView extends VerticalLayout implements RouterLayout {
     private final static Logger logger = Logger.getLogger(AppointmentView.class.getName());
 
 
