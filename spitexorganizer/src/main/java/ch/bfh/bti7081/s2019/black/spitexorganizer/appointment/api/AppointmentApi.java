@@ -18,4 +18,8 @@ public class AppointmentApi {
     public List<AppointmentDto> findAll(){
         return appoinmentService.findAll();
     }
+
+    public AppointmentDto findById(long id) {
+        return appoinmentService.findById(id);
+    }
 }

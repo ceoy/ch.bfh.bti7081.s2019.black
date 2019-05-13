@@ -1,0 +1,50 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/polymer/lib/elements/dom-repeat.html">
+
+<!-- Defines the hello-world element -->
+<dom-module id="appointment-detail">
+    <template>
+        <!-- Input element that shows the greeting from the model -->
+        <div id="patient-name">Patient X</div>
+        <div>
+            <label for="txt-information">Informationen</label>
+            <vaadin-text-area id="txt-information"
+                              cols="10"
+                              rows="5"></vaadin-text-area>
+        </div>
+
+        <div>
+            <label for="tasks">Tasklist</label>
+            <div id="tasks">
+                <template is="dom-repeat" items="[[tasks]]" as="task">
+                    <input
+                            type="checkbox"
+                            checked="{{task.done::input}}"> {{task.description}}
+                </template>
+            </div>
+        </div>
+
+        <button id="btn-all-evaluations" on-click="handleShowAllEvaluations">Alle Verlaufsberichte</button>
+        <button id="btn-create-evaluation" on-click="handleCreateEvaluation">Verlaufsbericht erstellen</button>
+    </template>
+
+    <!-- Polymer boilerplate to register the hello-world element -->
+    <script>
+        class AppointmentDetail extends Polymer.Element {
+            static get is() {
+                return 'appointment-detail'
+            }
+
+            static get properties() {
+                return {
+                    tasks: {
+                        type: Array,
+                        value: []
+                    }
+                }
+            }
+        }
+
+        customElements.define(AppointmentDetail.is, AppointmentDetail);
+    </script>
+</dom-module>

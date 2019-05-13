@@ -24,7 +24,7 @@ public class AppointmentAssembler {
         return appointmentDtos;
     }
 
-    private AppointmentDto toDto(Appointment appointment) {
+    public AppointmentDto toDto(Appointment appointment) {
         AppointmentDto appointmentDto = new AppointmentDto();
         appointmentDto.setId(appointment.getId());
         appointmentDto.setStart(appointment.getStart());

@@ -7,4 +7,5 @@ import com.vaadin.flow.theme.lumo.Lumo;
 
 @Theme(value = Lumo.class, variant = Lumo.DARK)
 public class MainLayout extends Div implements RouterLayout {
+
 }

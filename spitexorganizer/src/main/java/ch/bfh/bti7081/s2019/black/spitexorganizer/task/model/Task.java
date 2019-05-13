@@ -21,8 +21,7 @@ public class Task {
   @ManyToOne
   @JoinColumn(name = "appointment_id")
   private Appointment appointment;
-  
-  
+
   public Long getId() {
     return id;
   }

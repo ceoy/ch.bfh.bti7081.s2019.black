@@ -22,7 +22,6 @@ import java.util.logging.Logger;
  * The main view contains a button and a click listener.
  */
 @Route(value = "", layout = NavigationMenu.class)
-@PWA(name = "Project Base for Vaadin Flow", shortName = "Project Base")
 public class AppointmentView extends VerticalLayout implements RouterLayout {
     private final static Logger logger = Logger.getLogger(AppointmentView.class.getName());
 

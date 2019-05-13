@@ -9,7 +9,6 @@ import java.util.List;
 @Table(name="appointment")
 public class Appointment {
 
-
     @Id
     @GeneratedValue
     @Column(name = "Id", nullable = false)
