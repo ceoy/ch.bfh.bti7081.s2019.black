@@ -1,11 +1,8 @@
 package ch.bfh.bti7081.s2019.black.spitexorganizer.evaluation.model;
 
 import java.util.List;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+
 import ch.bfh.bti7081.s2019.black.spitexorganizer.report.model.Report;
 
 @Entity
@@ -18,7 +15,10 @@ public class Evaluation {
 
   @Column(name = "Text", nullable = false)
   private String text;
-  
+
+
+
+  @OneToMany
   @Column(name = "Reports", nullable = false)
   private List<Report> reports;
 

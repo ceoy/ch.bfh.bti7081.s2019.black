@@ -1,11 +1,8 @@
 package ch.bfh.bti7081.s2019.black.spitexorganizer.patient.model;
 
 import java.util.List;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+
 import ch.bfh.bti7081.s2019.black.spitexorganizer.evaluation.model.Evaluation;
 
 @Entity
@@ -36,7 +33,8 @@ public class Patient {
   
   @Column(name = "City", nullable = false)
   private String city;
-  
+
+  @OneToMany
   @Column(name = "Evaluations", nullable = false)
   private List<Evaluation> evaluations;
   

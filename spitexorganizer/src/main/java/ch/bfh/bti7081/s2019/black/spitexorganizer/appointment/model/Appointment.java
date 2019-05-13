@@ -21,7 +21,8 @@ public class Appointment {
 
     @Column(name = "End_Time", nullable = false)
     private LocalDateTime end;
-    
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "appointment",cascade = CascadeType.ALL)
     @Column(name = "Tasks", nullable = false)
     private List<Task> tasks;
     

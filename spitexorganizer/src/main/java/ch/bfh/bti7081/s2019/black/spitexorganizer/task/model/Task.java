@@ -1,5 +1,7 @@
 package ch.bfh.bti7081.s2019.black.spitexorganizer.task.model;
 
+import ch.bfh.bti7081.s2019.black.spitexorganizer.appointment.model.Appointment;
+
 import javax.persistence.*;
 
 @Entity
@@ -15,6 +17,10 @@ public class Task {
   
   @Column(name = "Done", nullable = false)
   private Boolean done;
+
+  @ManyToOne
+  @JoinColumn(name = "appointment_id")
+  private Appointment appointment;
   
   
   public Long getId() {
@@ -40,5 +46,12 @@ public class Task {
   public void setDone(Boolean done) {
     this.done = done;
   }
-  
+
+  public Appointment getAppointment() {
+    return appointment;
+  }
+
+  public void setAppointment(Appointment appointment) {
+    this.appointment = appointment;
+  }
 }
