@@ -18,6 +18,7 @@
             <div id="tasks">
                 <template is="dom-repeat" items="[[tasks]]" as="task">
                     <input
+                            on-change="valueUpdated"
                             type="checkbox"
                             checked="{{task.done::input}}"> {{task.description}}
                 </template>
@@ -33,15 +34,6 @@
         class AppointmentDetail extends Polymer.Element {
             static get is() {
                 return 'appointment-detail'
-            }
-
-            static get properties() {
-                return {
-                    tasks: {
-                        type: Array,
-                        value: []
-                    }
-                }
             }
         }
 
