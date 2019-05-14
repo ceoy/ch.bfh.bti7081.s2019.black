@@ -1,26 +1,21 @@
 package ch.bfh.bti7081.s2019.black.spitexorganizer.report.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.evaluation.model.Evaluation;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name="REPORT")
 public class Report {
   @Id
   @GeneratedValue
-  @Column(name = "Id", nullable = false)
+  @Column(name = "id", nullable = false)
   private Long id;
 
-  @Column(name = "Edit", nullable = false)
+  @Column(name = "edit", nullable = false)
   private Boolean edit;
   
-  @Column(name = "Description", nullable = false)
+  @Column(name = "description", nullable = false)
   private String description;
 
   @ManyToOne

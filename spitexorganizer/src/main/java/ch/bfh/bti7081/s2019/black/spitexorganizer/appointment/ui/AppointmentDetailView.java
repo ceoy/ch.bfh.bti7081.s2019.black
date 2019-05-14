@@ -4,9 +4,11 @@ import ch.bfh.bti7081.s2019.black.spitexorganizer.MainLayout;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.appointment.api.AppointmentApi;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.appointment.view.dtos.AppointmentDto;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.encoder.LongToStringEncoder;
+import ch.bfh.bti7081.s2019.black.spitexorganizer.patient.view.dtos.PatientDto;
+import ch.bfh.bti7081.s2019.black.spitexorganizer.report.api.ReportApi;
+import ch.bfh.bti7081.s2019.black.spitexorganizer.report.view.dtos.ReportDto;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.task.view.dtos.TaskDto;
 import com.vaadin.flow.component.Tag;
-import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.Paragraph;
@@ -14,7 +16,6 @@ import com.vaadin.flow.component.polymertemplate.EventHandler;
 import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import com.vaadin.flow.component.polymertemplate.RepeatIndex;
-import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.router.*;
 import com.vaadin.flow.templatemodel.Encode;
 import com.vaadin.flow.templatemodel.TemplateModel;
@@ -39,6 +40,8 @@ public class AppointmentDetailView extends PolymerTemplate<AppointmentDetailView
 
     private AppointmentApi appointmentApi;
 
+    private ReportApi reportApi;
+
     @EventHandler
     private void handleCreateEvaluation() {
         System.out.println("Hello world!");
@@ -46,7 +49,9 @@ public class AppointmentDetailView extends PolymerTemplate<AppointmentDetailView
 
     @EventHandler
     private void handleShowAllEvaluations() {
-        System.out.println("Hello world! all evalutions");
+        long patientId = appointment.getPatient().getId();
+        List<ReportDto> reports = reportApi.findByPatientId(patientId);
+        reports.forEach(reportDto -> System.out.println(reportDto.toString()));
     }
 
     @Override
@@ -56,8 +61,9 @@ public class AppointmentDetailView extends PolymerTemplate<AppointmentDetailView
             return;
         }
 
-        this.patientName.setText("Patient X");
-        this.information.setText("This is a lot of information regarding the Patient and stuff :) I'm actually not sure what I have to display here :(");
+        PatientDto patient = appointmentDto.getPatient();
+        this.patientName.setText(patient.getSurname() + " " + patient.getName());
+        this.information.setText(patient.getStreet());
 
         this.appointment = appointmentDto;
         getModel().setTasks(appointmentDto.getTasks());
@@ -69,11 +75,13 @@ public class AppointmentDetailView extends PolymerTemplate<AppointmentDetailView
         TaskDto changedTask = appointment.getTasks().get(id);
         // checkbox => only changes when you change the selected value
         changedTask.setDone(!changedTask.getDone());
+
     }
 
-    public AppointmentDetailView(@Autowired AppointmentApi appointmentApi) {
+    public AppointmentDetailView(@Autowired AppointmentApi appointmentApi, @Autowired ReportApi reportApi) {
         // save so we can use it later
         this.appointmentApi = appointmentApi;
+        this.reportApi = reportApi;
     }
 
 
