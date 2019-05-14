@@ -4,60 +4,63 @@ import ch.bfh.bti7081.s2019.black.spitexorganizer.appointment.ui.AppointmentDeta
 import ch.bfh.bti7081.s2019.black.spitexorganizer.appointment.ui.AppointmentView;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.appointment.ui.TestView;
 import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
-import com.vaadin.flow.router.ParentLayout;
-import com.vaadin.flow.router.RouterLayout;
+import com.vaadin.flow.component.dependency.HtmlImport;
+import com.vaadin.flow.component.polymertemplate.EventHandler;
+import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
+import com.vaadin.flow.component.polymertemplate.RepeatIndex;
+import com.vaadin.flow.templatemodel.Include;
+import com.vaadin.flow.templatemodel.TemplateModel;
 
+import java.util.ArrayList;
+import java.util.List;
 
-@ParentLayout(MainLayout.class)
-public class NavigationMenu extends Div implements RouterLayout {
+@Tag("navigation-menu")
+@HtmlImport("frontend://src/NavigationMenu.html")
+public class NavigationMenu extends PolymerTemplate<NavigationMenu.NavigationMenuModel> {
 
-    private HorizontalLayout buttonContainer = new HorizontalLayout();
+    private List<MenuItem> menuItems = new ArrayList<>();
 
     public NavigationMenu() {
-        // create menu
-        HorizontalLayout menu = new HorizontalLayout();
-
         // add elements
-        addMenuElement(AppointmentView.class, "Wochenplanung");
-        addMenuElement(TestView.class, "Evaluation");
-        createTestButton();
+        menuItems.add(new MenuItem(AppointmentView.class, "Wochenplanung"));
+        menuItems.add(new MenuItem(TestView.class, "Evaluation"));
 
-        // add button container to menu
-        menu.add(buttonContainer);
+        getModel().setMenu(menuItems);
+    }
 
-        // style button container
-        buttonContainer.getStyle().set("margin", "auto");
-
-        // add menu to navigation menu
-        add(menu);
+    @EventHandler
+    private void handleMenuClick(@RepeatIndex int index) {
+        // navigate
+        UI.getCurrent().navigate(menuItems.get(index).target);
     }
 
     private void createTestButton() {
         Button button = new Button("Test Appointemnt Detail");
         button.addClickListener(e -> UI.getCurrent().navigate(AppointmentDetailView.class, 1L));
 
-        button.addThemeName("tertiary");
-
-        buttonContainer.add(button);
+        // buttonContainer.add(button);
     }
 
-    private void addMenuElement(Class<? extends Component> navigationTarget,
-                                String name) {
-        // create a button
-        Button button = new Button(name);
+    public interface NavigationMenuModel extends TemplateModel {
+        @Include({"name"})
+        void setMenu(List<MenuItem> menu);
+    }
 
-        // add click listener for navigation
-        button.addClickListener(e -> UI.getCurrent().navigate(navigationTarget));
+    public class MenuItem {
+        private Class<? extends Component> target;
+        private String name;
 
-        // add style
-        button.addThemeName("tertiary");
+        public MenuItem(Class<? extends Component> target, String name) {
+            this.target = target;
+            this.name = name;
+        }
 
-        // add button to the button container
-        buttonContainer.add(button);
+        public String getName() {
+            return name;
+        }
     }
 
 }

@@ -38,9 +38,9 @@ public class DataInit implements ApplicationRunner {
 
             // create a tasks
             Task t2 = new Task();
-            t1.setAppointment(p1);
-            t1.setDescription("Clean the Patient.");
-            t1.setDone(true);
+            t2.setAppointment(p1);
+            t2.setDescription("Clean the Patient.");
+            t2.setDone(true);
 
             // add task to tasklist
             ArrayList<Task> tasks = new ArrayList<>();

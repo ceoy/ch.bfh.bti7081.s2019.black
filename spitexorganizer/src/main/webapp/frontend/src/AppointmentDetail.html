@@ -2,27 +2,35 @@
 <link rel="import" href="../bower_components/polymer/lib/elements/dom-repeat.html">
 
 <!-- Defines the hello-world element -->
-<dom-module id="appointment-detail">
+<dom-module id="appointment-detail" class="container">
+    <link rel="import" href="../style/normalize.min.css" type="css">
+    <link rel="import" href="../style/skeleton.min.css" type="css">
+    <link rel="import" href="../style/appointmentdetail.css" type="css">
+
     <template>
         <!-- Input element that shows the greeting from the model -->
-        <div id="patient-name">Patient X</div>
-        <div>
-            <label for="txt-information">Informationen</label>
-            <vaadin-text-area id="txt-information"
-                              cols="10"
-                              rows="5"></vaadin-text-area>
+        <h1 id="patient-name">Patient X</h1>
+        <div class="row">
+            <div class="one-half column">
+                <h4>Informationen</h4>
+                <p id="txt-information">
+                    Hier stehen ganz viele verschiedene informationen bezüglich des Patientens :)
+                </p>
+            </div>
+            <ul class="one-half column">
+                <h4>Taskliste</h4>
+                <ul id="tasks" class="task-list">
+                    <template is="dom-repeat" items="[[tasks]]" as="task">
+                        <li>
+                            <input
+                                    on-change="valueUpdated"
+                                    type="checkbox"
+                                    checked="{{task.done::input}}"> {{task.description}}
+                        </li>
+                    </template>
+                </ul>
         </div>
 
-        <div>
-            <label for="tasks">Tasklist</label>
-            <div id="tasks">
-                <template is="dom-repeat" items="[[tasks]]" as="task">
-                    <input
-                            on-change="valueUpdated"
-                            type="checkbox"
-                            checked="{{task.done::input}}"> {{task.description}}
-                </template>
-            </div>
         </div>
 
         <button id="btn-all-evaluations" on-click="handleShowAllEvaluations">Alle Verlaufsberichte</button>

@@ -1,0 +1,8 @@
+.task-list {
+    list-style-type: none;
+    margin-left: 0;
+}
+
+.task-list li {
+    margin-bottom: 0!important;
+}
