@@ -1,21 +1,27 @@
 package ch.bfh.bti7081.s2019.black.spitexorganizer.appointment.api;
 
-import ch.bfh.bti7081.s2019.black.spitexorganizer.appointment.business.AppoinmentService;
+import ch.bfh.bti7081.s2019.black.spitexorganizer.appointment.business.AppointmentService;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.appointment.view.dtos.AppointmentDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @Component
 public class AppointmentApi {
 
     @Autowired
-    AppoinmentService appoinmentService;
+    AppointmentService appointmentService;
 
-    public List<AppointmentDto> findAll(){
-        return appoinmentService.findAll();
+    public List<AppointmentDto> findAll() {
+        return appointmentService.findAll();
+    }
+
+    public AppointmentDto findById(long id) {
+        return appointmentService.findById(id);
+    }
+
+    public List<AppointmentDto> findByEmployee(long employeeId) {
+        return appointmentService.findByEmployee(employeeId);
     }
 }

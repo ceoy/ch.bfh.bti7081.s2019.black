@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpitexorganizerApplication {
+public class SpitexOrganizerApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SpitexorganizerApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(SpitexOrganizerApplication.class, args);
+    }
 
 }

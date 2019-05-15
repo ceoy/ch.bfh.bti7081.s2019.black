@@ -1,134 +1,127 @@
 package ch.bfh.bti7081.s2019.black.spitexorganizer.patient.model;
 
-import java.util.List;
-import javax.persistence.*;
-
+import ch.bfh.bti7081.s2019.black.spitexorganizer.appointment.model.Appointment;
+import ch.bfh.bti7081.s2019.black.spitexorganizer.evaluation.model.Evaluation;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
-import ch.bfh.bti7081.s2019.black.spitexorganizer.evaluation.model.Evaluation;
-import ch.bfh.bti7081.s2019.black.spitexorganizer.appointment.model.Appointment;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Table(name="patient")
+@Table(name = "patient")
 public class Patient {
-  @Id
-  @GeneratedValue
-  @Column(name = "Id", nullable = false)
-  private Long id;
+    @Id
+    @GeneratedValue
+    @Column(name = "Id", nullable = false)
+    private Long id;
 
-  @Column(name = "Name", nullable = false)
-  private String name;
-  
-  @Column(name = "Surname", nullable = false)
-  private String surname;
-  
-  @Column(name = "Mail", nullable = false)
-  private String mail;
-  
-  @Column(name = "PhoneNumber", nullable = false)
-  private Integer phoneNumber;
-  
-  @Column(name = "PLZ", nullable = false)
-  private String plz;
-  
-  @Column(name = "Street", nullable = false)
-  private String street;
-  
-  @Column(name = "City", nullable = false)
-  private String city;
-  
-  @OneToMany(mappedBy = "patient",cascade = CascadeType.MERGE)
-  @Column(name = "Evaluations", nullable = false)
-  //@OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
-  @LazyCollection(LazyCollectionOption.FALSE)
-  private List<Evaluation> evaluations;
-  
-  @OneToMany(mappedBy = "patient",cascade = CascadeType.MERGE)
-  @Column(name = "Appointments", nullable = false)
-  //@OneToMany(mappedBy = "patient",cascade = CascadeType.ALL)
-  @LazyCollection(LazyCollectionOption.FALSE)
-  private List<Appointment> appointments;
-  
+    @Column(name = "Name", nullable = false)
+    private String name;
 
-  public List<Evaluation> getEvaluations() {
-    return evaluations;
-  }
+    @Column(name = "Surname", nullable = false)
+    private String surname;
 
-  public void setEvaluations(List<Evaluation> evaluations) {
-    this.evaluations = evaluations;
-  }
+    @Column(name = "Mail", nullable = false)
+    private String mail;
 
-  public Long getId() {
-    return id;
-  }
+    @Column(name = "PhoneNumber", nullable = false)
+    private String phoneNumber;
 
-  public void setId(Long id) {
-    this.id = id;
-  }
+    @Column(name = "PLZ", nullable = false)
+    private String plz;
 
-  public String getName() {
-    return name;
-  }
+    @Column(name = "Street", nullable = false)
+    private String street;
 
-  public void setName(String name) {
-    this.name = name;
-  }
+    @Column(name = "City", nullable = false)
+    private String city;
 
-  public String getSurname() {
-    return surname;
-  }
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.MERGE)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Evaluation> evaluations;
 
-  public void setSurname(String surname) {
-    this.surname = surname;
-  }
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.MERGE)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Appointment> appointments;
 
-  public String getMail() {
-    return mail;
-  }
+    public List<Evaluation> getEvaluations() {
+        return evaluations;
+    }
 
-  public void setMail(String mail) {
-    this.mail = mail;
-  }
+    public void setEvaluations(List<Evaluation> evaluations) {
+        this.evaluations = evaluations;
+    }
 
-  public Integer getPhoneNumber() {
-    return phoneNumber;
-  }
+    public Long getId() {
+        return id;
+    }
 
-  public void setPhoneNumber(Integer phoneMumber) {
-    this.phoneNumber = phoneMumber;
-  }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-  public String getPlz() {
-    return plz;
-  }
+    public String getName() {
+        return name;
+    }
 
-  public void setPlz(String plz) {
-    this.plz = plz;
-  }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-  public String getStreet() {
-    return street;
-  }
+    public String getSurname() {
+        return surname;
+    }
 
-  public void setStreet(String street) {
-    this.street = street;
-  }
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
 
-  public String getCity() {
-    return city;
-  }
+    public String getMail() {
+        return mail;
+    }
 
-  public void setCity(String city) {
-    this.city = city;
-  }
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
 
-  public List<Appointment> getAppointments() {
-    return appointments;
-  }
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
 
-  public void setAppointments(List<Appointment> appointments) {
-    this.appointments = appointments;
-  }
-  
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getPlz() {
+        return plz;
+    }
+
+    public void setPlz(String plz) {
+        this.plz = plz;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public List<Appointment> getAppointments() {
+        return appointments;
+    }
+
+    public void setAppointments(List<Appointment> appointments) {
+        this.appointments = appointments;
+    }
 }

@@ -1,108 +1,108 @@
 package ch.bfh.bti7081.s2019.black.spitexorganizer.patient.view.dtos;
 
-import java.util.List;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.evaluation.view.dtos.EvaluationDto;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.appointment.view.dtos.AppointmentDto;
 
+import java.util.List;
+
 public class PatientDto {
-  private Long id;
+    private Long id;
 
-  private String name;
-  
-  private String surname;
-  
-  private String mail;
-  
-  private Integer phoneNumber;
-  
-  private String plz;
-  
-  private String street;
-  
-  private String city;
-  
-  private List<EvaluationDto> evaluations;
-  
-  private List<AppointmentDto> appointments;
+    private String name;
 
-  public Long getId() {
-    return id;
-  }
+    private String surname;
 
-  public void setId(Long id) {
-    this.id = id;
-  }
+    private String mail;
 
-  public String getName() {
-    return name;
-  }
+    private String phoneNumber;
 
-  public void setName(String name) {
-    this.name = name;
-  }
+    private String plz;
 
-  public String getSurname() {
-    return surname;
-  }
+    private String street;
 
-  public void setSurname(String surname) {
-    this.surname = surname;
-  }
+    private String city;
 
-  public String getMail() {
-    return mail;
-  }
+    private List<EvaluationDto> evaluations;
 
-  public void setMail(String mail) {
-    this.mail = mail;
-  }
+    private List<AppointmentDto> appointments;
 
-  public Integer getPhoneNumber() {
-    return phoneNumber;
-  }
+    public Long getId() {
+        return id;
+    }
 
-  public void setPhoneNumber(Integer phoneNumber) {
-    this.phoneNumber = phoneNumber;
-  }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-  public String getPlz() {
-    return plz;
-  }
+    public String getName() {
+        return name;
+    }
 
-  public void setPlz(String plz) {
-    this.plz = plz;
-  }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-  public String getStreet() {
-    return street;
-  }
+    public String getSurname() {
+        return surname;
+    }
 
-  public void setStreet(String street) {
-    this.street = street;
-  }
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
 
-  public String getCity() {
-    return city;
-  }
+    public String getMail() {
+        return mail;
+    }
 
-  public void setCity(String city) {
-    this.city = city;
-  }
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
 
-  public List<EvaluationDto> getEvaluations() {
-    return evaluations;
-  }
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
 
-  public void setEvaluations(List<EvaluationDto> evaluations) {
-    this.evaluations = evaluations;
-  }
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 
-  public List<AppointmentDto> getAppointments() {
-    return appointments;
-  }
+    public String getPlz() {
+        return plz;
+    }
 
-  public void setAppointments(List<AppointmentDto> appointments) {
-    this.appointments = appointments;
-  }
-  
+    public void setPlz(String plz) {
+        this.plz = plz;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public List<EvaluationDto> getEvaluations() {
+        return evaluations;
+    }
+
+    public void setEvaluations(List<EvaluationDto> evaluations) {
+        this.evaluations = evaluations;
+    }
+
+    public List<AppointmentDto> getAppointments() {
+        return appointments;
+    }
+
+    public void setAppointments(List<AppointmentDto> appointments) {
+        this.appointments = appointments;
+    }
 }
