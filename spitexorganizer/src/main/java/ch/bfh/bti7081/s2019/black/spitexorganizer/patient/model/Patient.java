@@ -1,5 +1,6 @@
 package ch.bfh.bti7081.s2019.black.spitexorganizer.patient.model;
 
+import ch.bfh.bti7081.s2019.black.spitexorganizer.appointment.model.Appointment;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.evaluation.model.Evaluation;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
@@ -39,6 +40,10 @@ public class Patient {
     @OneToMany(mappedBy = "patient", cascade = CascadeType.MERGE)
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Evaluation> evaluations;
+
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.MERGE)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Appointment> appointments;
 
     public List<Evaluation> getEvaluations() {
         return evaluations;
@@ -110,5 +115,13 @@ public class Patient {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public List<Appointment> getAppointments() {
+        return appointments;
+    }
+
+    public void setAppointments(List<Appointment> appointments) {
+        this.appointments = appointments;
     }
 }

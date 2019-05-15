@@ -28,8 +28,8 @@ public class Appointment {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "appointment", cascade = CascadeType.ALL)
     private List<Task> tasks;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JoinColumn(name = "patient_id", referencedColumnName = "Id")
+    @ManyToOne
+    @JoinColumn(name = "patient_id")
     private Patient patient;
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
@@ -42,15 +42,6 @@ public class Appointment {
 
     public Appointment() {
 
-    }
-
-    public Appointment(AppointmentDto appointmentDto) {
-        this.id = appointmentDto.getId();
-        this.start = appointmentDto.getStart();
-        this.end = appointmentDto.getEnd();
-        // this.tasks = appointmentDto.getTasks();
-        // this.patient = appointmentDto.getPatient();
-        this.report = getReport();
     }
 
     public Patient getPatient() {
