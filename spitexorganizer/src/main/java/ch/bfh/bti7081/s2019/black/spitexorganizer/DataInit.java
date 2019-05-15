@@ -94,10 +94,11 @@ public class DataInit implements ApplicationRunner {
         return patientRepository.save(patient);
     }
 
-    private Report createEmptyReport() {
+    private Report createEmptyReport(Appointment appointment) {
         Report report = new Report();
         report.setDescription("");
         report.setEdit(true);
+        report.setAppointment(appointment);
         return reportRepository.save(report);
     }
 
@@ -116,8 +117,8 @@ public class DataInit implements ApplicationRunner {
         Appointment appointment = new Appointment();
         appointment.setStart(LocalDateTime.now());
         appointment.setEnd(LocalDateTime.now());
-        appointment.setReport(createEmptyReport());
-
+        appointment = appointmentRepository.save(appointment);
+        appointment.setReport(createEmptyReport(appointment));
 
         return appointmentRepository.save(appointment);
     }

@@ -1,6 +1,5 @@
 package ch.bfh.bti7081.s2019.black.spitexorganizer.appointment.model;
 
-import ch.bfh.bti7081.s2019.black.spitexorganizer.appointment.view.dtos.AppointmentDto;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.employee.model.Employee;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.patient.model.Patient;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.report.model.Report;
@@ -33,7 +32,7 @@ public class Appointment {
     private Patient patient;
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JoinColumn(name = "report_id", referencedColumnName = "Id")
+    @JoinColumn(name = "report_id")
     private Report report;
 
     @ManyToOne
@@ -53,6 +52,9 @@ public class Appointment {
     }
 
     public void setReport(Report report) {
+        if (report != null) {
+            report.setAppointment(this);
+        }
         this.report = report;
     }
 

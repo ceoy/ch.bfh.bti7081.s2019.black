@@ -11,5 +11,5 @@ public interface ReportRepository extends JpaRepository<Report, Long> {
             value = "Select * from REPORT where ID in (SELECT a.REPORT_ID FROM APPOINTMENT AS a WHERE a.PATIENT_ID = ?!)")
     List<Report> findByPatientId(long id);
 
-    Report findByAppointmentId(long evaluation);
+    Report findByAppointmentId(long id);
 }
