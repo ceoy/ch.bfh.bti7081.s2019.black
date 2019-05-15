@@ -10,6 +10,5 @@ import java.util.List;
 @Repository
 public interface AppointmentRepository extends JpaRepository<Appointment, Long> {
 
-    @Query("Select a from Appointment as a where a.employee = ?1")
-    List<Appointment> findByEmployeeId(long employeeId);
+    List<Appointment> findByEmployeeId(long employee);
 }

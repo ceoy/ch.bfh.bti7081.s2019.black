@@ -22,22 +22,23 @@ import java.util.ArrayList;
 @Component
 public class DataInit implements ApplicationRunner {
 
+    @Autowired
     private AppointmentRepository appointmentRepository;
-    private PatientRepository patientRepository;
-    private ReportRepository reportRepository;
-    private EmployeeRepository employeeRepository;
-    private TaskRepository taskRepository;
-    private EvaluationRepository evaluationRepository;
 
     @Autowired
-    public DataInit(AppointmentRepository appointmentRepository, PatientRepository patientRepository, ReportRepository reportRepository, EmployeeRepository employeeRepository, TaskRepository taskRepository, EvaluationRepository evaluationRepository) {
-        this.appointmentRepository = appointmentRepository;
-        this.patientRepository = patientRepository;
-        this.reportRepository = reportRepository;
-        this.employeeRepository = employeeRepository;
-        this.taskRepository = taskRepository;
-        this.evaluationRepository = evaluationRepository;
-    }
+    private PatientRepository patientRepository;
+
+    @Autowired
+    private ReportRepository reportRepository;
+
+    @Autowired
+    private EmployeeRepository employeeRepository;
+
+    @Autowired
+    private TaskRepository taskRepository;
+
+    @Autowired
+    private EvaluationRepository evaluationRepository;
 
     @Override
     public void run(ApplicationArguments args) {
@@ -47,19 +48,20 @@ public class DataInit implements ApplicationRunner {
         Patient patient = createPatient();
 
         // create first appointment
-        Appointment p1 = new Appointment();
+        Appointment appointment1 = createAppointment();
+        Appointment appointment2 = createAppointment();
 
         // create a tasks
         Task t1 = new Task();
-        t1.setAppointment(p1);
-        t1.setDescription("Take a dump with the Patient.");
+        t1.setAppointment(appointment1);
+        t1.setDescription("Stuhlgang sicherstellen");
         t1.setDone(false);
 
         // create a tasks
         Task t2 = new Task();
-        t2.setAppointment(p1);
-        t2.setDescription("Clean the Patient.");
-        t2.setDone(true);
+        t2.setAppointment(appointment1);
+        t2.setDescription("Medikamente verabreichen");
+        t2.setDone(false);
 
         // add task to tasklist
         ArrayList<Task> tasks = new ArrayList<>();
@@ -67,26 +69,17 @@ public class DataInit implements ApplicationRunner {
         tasks.add(t2);
 
         // add task to appointment
-        p1.setTasks(tasks);
-        p1.setPatient(patient);
-        p1.setReport(createEmptyReport());
-        p1.setEmployee(employee);
-
-        // define start & end time
-        p1.setStart(LocalDateTime.now());
-        p1.setEnd(LocalDateTime.now());
+        appointment1.setTasks(tasks);
+        appointment1.setPatient(patient);
+        appointment1.setEmployee(employee);
 
         // create second appointment
-        Appointment p2 = new Appointment();
-        p2.setStart(LocalDateTime.now());
-        p2.setEnd(LocalDateTime.now());
-        p2.setReport(createEmptyReport());
-        p2.setPatient(patient);
-        p2.setEmployee(employee);
+        appointment2.setPatient(patient);
+        appointment2.setEmployee(employee);
 
         // save appointments
-        appointmentRepository.save(p1);
-        appointmentRepository.save(p2);
+        appointmentRepository.save(appointment1);
+        appointmentRepository.save(appointment2);
     }
 
     private Patient createPatient() {
@@ -117,6 +110,16 @@ public class DataInit implements ApplicationRunner {
         employee.setPassword("hahahcleartextpw");
 
         return employeeRepository.save(employee);
+    }
+
+    private Appointment createAppointment() {
+        Appointment appointment = new Appointment();
+        appointment.setStart(LocalDateTime.now());
+        appointment.setEnd(LocalDateTime.now());
+        appointment.setReport(createEmptyReport());
+
+
+        return appointmentRepository.save(appointment);
     }
 
 }
