@@ -1,5 +1,6 @@
 package ch.bfh.bti7081.s2019.black.spitexorganizer.appointment.model;
 
+import ch.bfh.bti7081.s2019.black.spitexorganizer.appointment.view.dtos.AppointmentDto;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.employee.model.Employee;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.patient.model.Patient;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.report.model.Report;
@@ -38,6 +39,19 @@ public class Appointment {
     @ManyToOne
     @JoinColumn(name = "employee_id")
     private Employee employee;
+
+    public Appointment() {
+
+    }
+
+    public Appointment(AppointmentDto appointmentDto) {
+        this.id = appointmentDto.getId();
+        this.start = appointmentDto.getStart();
+        this.end = appointmentDto.getEnd();
+        // this.tasks = appointmentDto.getTasks();
+        // this.patient = appointmentDto.getPatient();
+        this.report = getReport();
+    }
 
     public Patient getPatient() {
         return patient;

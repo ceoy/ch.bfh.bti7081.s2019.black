@@ -10,4 +10,7 @@ public interface ReportRepository extends JpaRepository<Report, Long> {
     @Query(nativeQuery = true,
             value = "Select * from REPORT where ID in (SELECT a.REPORT_ID FROM APPOINTMENT AS a WHERE a.PATIENT_ID = ?)")
     List<Report> findByPatientId(long id);
+
+    @Query("Select r from Report as r where r.evaluation = ?1")
+    Report findByAppointmentId(long id);
 }

@@ -16,4 +16,12 @@ public class ReportApi {
     public List<ReportDto> findByPatientId(long id) {
         return reportService.findByPatientId(id);
     }
+
+    public ReportDto findByAppointmentId(long id) {
+        return reportService.findByAppointmentId(id);
+    }
+
+    public void update(ReportDto reportDto) {
+        reportService.update(reportDto);
+    }
 }

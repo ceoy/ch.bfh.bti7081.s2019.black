@@ -1,6 +1,7 @@
 package ch.bfh.bti7081.s2019.black.spitexorganizer.task.model;
 
 import ch.bfh.bti7081.s2019.black.spitexorganizer.appointment.model.Appointment;
+import ch.bfh.bti7081.s2019.black.spitexorganizer.task.view.dtos.TaskDto;
 
 import javax.persistence.*;
 
@@ -21,6 +22,17 @@ public class Task {
     @ManyToOne
     @JoinColumn(name = "appointment_id")
     private Appointment appointment;
+
+    public Task() {
+
+    }
+
+    public Task(TaskDto taskDto, Appointment appointment) {
+        this.id = taskDto.getId();
+        this.description = taskDto.getDescription();
+        this.done = taskDto.getDone();
+        this.appointment = appointment;
+    }
 
     public Long getId() {
         return id;

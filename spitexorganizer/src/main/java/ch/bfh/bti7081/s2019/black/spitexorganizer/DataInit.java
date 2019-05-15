@@ -87,7 +87,6 @@ public class DataInit implements ApplicationRunner {
         // save appointments
         appointmentRepository.save(p1);
         appointmentRepository.save(p2);
-
     }
 
     private Patient createPatient() {
