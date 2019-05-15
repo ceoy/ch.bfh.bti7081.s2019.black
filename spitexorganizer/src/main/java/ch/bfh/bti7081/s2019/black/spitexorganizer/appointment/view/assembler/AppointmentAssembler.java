@@ -2,6 +2,7 @@ package ch.bfh.bti7081.s2019.black.spitexorganizer.appointment.view.assembler;
 
 import ch.bfh.bti7081.s2019.black.spitexorganizer.appointment.model.Appointment;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.appointment.view.dtos.AppointmentDto;
+import ch.bfh.bti7081.s2019.black.spitexorganizer.patient.view.assembler.PatientAssembler;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.task.view.assembler.TaskAssembler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -14,6 +15,9 @@ public class AppointmentAssembler {
 
     @Autowired
     TaskAssembler taskAssembler;
+    
+    @Autowired
+    PatientAssembler patientAssembler;
 
     public List<AppointmentDto> toDtos(List<Appointment> appointments){
         List<AppointmentDto> appointmentDtos=new ArrayList<>();
@@ -30,6 +34,7 @@ public class AppointmentAssembler {
         appointmentDto.setStart(appointment.getStart());
         appointmentDto.setEnd(appointment.getEnd());
         appointmentDto.setTasks(taskAssembler.toDtos(appointment.getTasks()));
+        //appointmentDto.setPatient(patientAssembler.toDto(appointment.getPatient()));
         return appointmentDto;
     }
 }

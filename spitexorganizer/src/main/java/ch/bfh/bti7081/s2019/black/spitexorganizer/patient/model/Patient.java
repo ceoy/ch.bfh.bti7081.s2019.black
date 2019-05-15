@@ -3,7 +3,11 @@ package ch.bfh.bti7081.s2019.black.spitexorganizer.patient.model;
 import java.util.List;
 import javax.persistence.*;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import ch.bfh.bti7081.s2019.black.spitexorganizer.evaluation.model.Evaluation;
+import ch.bfh.bti7081.s2019.black.spitexorganizer.appointment.model.Appointment;
 
 @Entity
 @Table(name="patient")
@@ -34,9 +38,17 @@ public class Patient {
   @Column(name = "City", nullable = false)
   private String city;
   
-  @OneToMany(fetch = FetchType.EAGER, mappedBy = "patient",cascade = CascadeType.ALL)
+  @OneToMany(mappedBy = "patient",cascade = CascadeType.MERGE)
   @Column(name = "Evaluations", nullable = false)
+  //@OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
+  @LazyCollection(LazyCollectionOption.FALSE)
   private List<Evaluation> evaluations;
+  
+  @OneToMany(mappedBy = "patient",cascade = CascadeType.MERGE)
+  @Column(name = "Appointments", nullable = false)
+  //@OneToMany(mappedBy = "patient",cascade = CascadeType.ALL)
+  @LazyCollection(LazyCollectionOption.FALSE)
+  private List<Appointment> appointments;
   
 
   public List<Evaluation> getEvaluations() {
@@ -110,9 +122,13 @@ public class Patient {
   public void setCity(String city) {
     this.city = city;
   }
-  
- // @Column(name = "Evaluation", nullable = false)
- // private List<Evaluation> evaluation;
-  
+
+  public List<Appointment> getAppointments() {
+    return appointments;
+  }
+
+  public void setAppointments(List<Appointment> appointments) {
+    this.appointments = appointments;
+  }
   
 }

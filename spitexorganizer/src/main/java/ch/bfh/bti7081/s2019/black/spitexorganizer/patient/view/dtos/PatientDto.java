@@ -2,6 +2,7 @@ package ch.bfh.bti7081.s2019.black.spitexorganizer.patient.view.dtos;
 
 import java.util.List;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.evaluation.view.dtos.EvaluationDto;
+import ch.bfh.bti7081.s2019.black.spitexorganizer.appointment.view.dtos.AppointmentDto;
 
 public class PatientDto {
   private Long id;
@@ -21,6 +22,8 @@ public class PatientDto {
   private String city;
   
   private List<EvaluationDto> evaluations;
+  
+  private List<AppointmentDto> appointments;
 
   public Long getId() {
     return id;
@@ -58,8 +61,8 @@ public class PatientDto {
     return phoneNumber;
   }
 
-  public void setPhoneNumber(Integer phoneMumber) {
-    this.phoneNumber = phoneMumber;
+  public void setPhoneNumber(Integer phoneNumber) {
+    this.phoneNumber = phoneNumber;
   }
 
   public String getPlz() {
@@ -92,6 +95,14 @@ public class PatientDto {
 
   public void setEvaluations(List<EvaluationDto> evaluations) {
     this.evaluations = evaluations;
+  }
+
+  public List<AppointmentDto> getAppointments() {
+    return appointments;
+  }
+
+  public void setAppointments(List<AppointmentDto> appointments) {
+    this.appointments = appointments;
   }
   
 }

@@ -2,6 +2,7 @@ package ch.bfh.bti7081.s2019.black.spitexorganizer.appointment.model;
 
 import javax.persistence.*;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.task.model.Task;
+import ch.bfh.bti7081.s2019.black.spitexorganizer.patient.model.Patient;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -25,6 +26,10 @@ public class Appointment {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "appointment",cascade = CascadeType.ALL)
     @Column(name = "Tasks", nullable = false)
     private List<Task> tasks;
+    
+    @ManyToOne
+    @JoinColumn(name = "patient_id")
+    private Patient patient;
     
     public List<Task> getTasks() {
       return tasks;
@@ -56,6 +61,14 @@ public class Appointment {
 
     public void setEnd(LocalDateTime end) {
       this.end = end;
+    }
+
+    public Patient getPatient() {
+      return patient;
+    }
+
+    public void setPatient(Patient patient) {
+      this.patient = patient;
     }
   
 }
