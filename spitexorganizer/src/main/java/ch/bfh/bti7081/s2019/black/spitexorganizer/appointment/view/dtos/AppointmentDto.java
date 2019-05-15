@@ -12,6 +12,10 @@ public class AppointmentDto {
     private LocalDateTime end;
     private List<TaskDto> tasks;
     private PatientDto patient;
+    
+    public String getName() {
+      return patient.getSurname() + patient.getName();
+    }
 
     public Long getId() {
         return id;

@@ -35,6 +35,7 @@ public class AppointmentView extends VerticalLayout implements RouterLayout {
         Grid<AppointmentDto> grid = new Grid<>();
         grid.setItems(appointmentDtos);
         grid.addColumn(AppointmentDto::getId).setHeader("ID");
+        //grid.addColumn(AppointmentDto::getName).setHeader("Name");
         grid.addColumn(AppointmentDto::getStart).setHeader("START");
         add(grid);
         NativeButton nativeButton = new NativeButton("LEAVE MAIN");
