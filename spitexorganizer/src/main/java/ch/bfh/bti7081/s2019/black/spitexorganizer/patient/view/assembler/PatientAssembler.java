@@ -42,7 +42,6 @@ public class PatientAssembler {
         patientDtos.setSurname(patient.getSurname());
         patientDtos.setStreet(patient.getStreet());
         patientDtos.setPlz(patient.getPlz());
-        patientDtos.setAppointments(appointmentAssembler.toDtos(patient.getAppointments()));
         patientDtos.setPhoneNumber(patient.getPhoneNumber());
         patientDtos.setEvaluations(evaluationAssembler.toDtos(patient.getEvaluations()));
         return patientDtos;

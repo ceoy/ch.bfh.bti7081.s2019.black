@@ -40,4 +40,8 @@ public class AppointmentService {
         appointment.getTasks().add(new Task(taskDto, appointment));
         appointmentRepository.save(appointment);
     }
+
+    public List<AppointmentDto> findByPatientId(long id) {
+        return appointmentAssembler.toDtos(appointmentRepository.findByPatientId(id));
+    }
 }

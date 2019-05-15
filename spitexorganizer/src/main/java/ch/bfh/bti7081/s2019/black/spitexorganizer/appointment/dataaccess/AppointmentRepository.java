@@ -11,4 +11,6 @@ import java.util.List;
 public interface AppointmentRepository extends JpaRepository<Appointment, Long> {
 
     List<Appointment> findByEmployeeId(long employee);
+
+    List<Appointment> findByPatientId(long patient);
 }

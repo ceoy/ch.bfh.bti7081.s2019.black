@@ -24,4 +24,8 @@ public class AppointmentApi {
     public List<AppointmentDto> findByEmployee(long employeeId) {
         return appointmentService.findByEmployee(employeeId);
     }
+
+    public List<AppointmentDto> findByPatientId(long id) {
+        return appointmentService.findByPatientId(id);
+    }
 }
