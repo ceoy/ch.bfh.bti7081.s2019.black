@@ -13,11 +13,21 @@
         <div class="row">
             <div class="one-half column">
                 <h4>Informationen</h4>
-                <p id="txt-information">
-                    Hier stehen ganz viele verschiedene informationen bezüglich des Patientens :)
-                </p>
+                <p id="txt-date"></p>
+
+                <br/>
+                <h5>Patient</h5>
+                <p id="txt-name"></p>
+                <p id="txt-street"></p>
+                <p id="txt-city"></p>
+                <br/>
+                <p id="txt-phone"></p>
+                <p id="txt-mail"></p>
+
+                <br/>
+                <button on-click="handleGoToRoute">Karte</button>
             </div>
-            <ul class="one-half column">
+            <div class="one-half column">
                 <h4>Taskliste</h4>
                 <ul id="tasks" class="task-list">
                     <template is="dom-repeat" items="[[tasks]]" as="task">
@@ -29,8 +39,7 @@
                         </li>
                     </template>
                 </ul>
-        </div>
-
+            </div>
         </div>
 
         <button id="btn-all-evaluations" on-click="handleShowAllEvaluations">Alle Verlaufsberichte</button>

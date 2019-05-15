@@ -6,3 +6,12 @@
 .task-list li {
     margin-bottom: 0!important;
 }
+
+p {
+    margin-bottom: 0;
+}
+
+
+.row {
+    margin-bottom: 2.5rem;
+}

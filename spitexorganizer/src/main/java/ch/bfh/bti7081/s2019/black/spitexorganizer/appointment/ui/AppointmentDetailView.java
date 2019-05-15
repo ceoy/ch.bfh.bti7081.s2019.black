@@ -9,6 +9,7 @@ import ch.bfh.bti7081.s2019.black.spitexorganizer.report.api.ReportApi;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.report.view.dtos.ReportDto;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.task.view.dtos.TaskDto;
 import com.vaadin.flow.component.Tag;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.Paragraph;
@@ -21,6 +22,9 @@ import com.vaadin.flow.templatemodel.Encode;
 import com.vaadin.flow.templatemodel.TemplateModel;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 
@@ -30,11 +34,22 @@ import java.util.List;
 @Route(value = "appointment", layout = MainLayout.class)
 public class AppointmentDetailView extends PolymerTemplate<AppointmentDetailView.TaskModel> implements RouterLayout, HasUrlParameter<Long> {
 
+    private final String googleMapsString = "https://www.google.com/maps/search/?api=1&query=";
+
     @Id("patient-name")
     private H1 patientName;
-
-    @Id("txt-information")
-    private Paragraph information;
+    @Id("txt-name")
+    private Paragraph txtName;
+    @Id("txt-street")
+    private Paragraph txtStreet;
+    @Id("txt-city")
+    private Paragraph txtCity;
+    @Id("txt-phone")
+    private Paragraph txtPhone;
+    @Id("txt-mail")
+    private Paragraph txtMail;
+    @Id("txt-date")
+    private Paragraph txtDate;
 
     private AppointmentDto appointment;
 
@@ -45,6 +60,17 @@ public class AppointmentDetailView extends PolymerTemplate<AppointmentDetailView
     @EventHandler
     private void handleCreateEvaluation() {
         System.out.println("Hello world!");
+    }
+
+    @EventHandler
+    private void handleGoToRoute() {
+        try {
+            PatientDto patient = appointment.getPatient();
+            String linkToGoogleMaps = URLEncoder.encode(patient.getStreet() + ", " + patient.getPlz() + " " + patient.getCity(), "UTF-8");
+            UI.getCurrent().getPage().executeJavaScript("window.open(\"" + googleMapsString + linkToGoogleMaps + "\", \"_blank\");");
+        } catch (UnsupportedEncodingException e) {
+            // ok that is bad :(
+        }
     }
 
     @EventHandler
@@ -62,8 +88,22 @@ public class AppointmentDetailView extends PolymerTemplate<AppointmentDetailView
         }
 
         PatientDto patient = appointmentDto.getPatient();
-        this.patientName.setText(patient.getSurname() + " " + patient.getName());
-        this.information.setText(patient.getStreet());
+
+        // set values to view
+        String patientFullName = patient.getSurname() + " " + patient.getName();
+        this.patientName.setText(patientFullName);
+        this.txtName.setText(patientFullName);
+        this.txtStreet.setText(patient.getStreet());
+        this.txtCity.setText(patient.getPlz() + " " + patient.getCity());
+        this.txtPhone.setText(patient.getPhoneNumber());
+        this.txtMail.setText(patient.getMail());
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        String start = appointmentDto.getStart().format(formatter);
+        String end = appointmentDto.getEnd().format(formatter);
+        String date = appointmentDto.getStart().format(DateTimeFormatter.ofPattern("dd.MM"));
+        String format = "Termin von %s bis %s am %s";
+        this.txtDate.setText(String.format(format, start, end, date));
 
         this.appointment = appointmentDto;
         getModel().setTasks(appointmentDto.getTasks());
