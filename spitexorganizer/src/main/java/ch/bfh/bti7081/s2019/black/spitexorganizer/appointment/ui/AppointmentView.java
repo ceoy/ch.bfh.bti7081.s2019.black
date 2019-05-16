@@ -33,12 +33,14 @@ public class AppointmentView extends VerticalLayout implements RouterLayout {
         List<AppointmentDto> appointmentDtos = appointmentApi.findAll();
         Grid<AppointmentDto> grid = new Grid<>();
         grid.setItems(appointmentDtos);
-        grid.addColumn(AppointmentDto::getId).setHeader("ID").setWidth("2px");
-        grid.addColumn(AppointmentDto::getName).setHeader("NAME").setWidth("200px");
-        grid.addColumn(AppointmentDto::getFormattedStart).setHeader("START").setComparator((start1,start2)->
+        grid.addColumn(appointmentDto -> appointmentDto.getPatient().getName() + " " + appointmentDto.getPatient().getSurname()).setHeader("Patienten Name:").setWidth("200px");
+        grid.addColumn(appointmentDto -> appointmentDto.getDate()).setHeader("Datum");
+        grid.addColumn(appointmentDto -> appointmentDto.getStartTime()).setHeader("Von:").setComparator((start1,start2)->
         {
-          return start1.getFormattedStart().compareTo(start2.getFormattedStart());
-        });
+          return start1.getStartTime().compareTo(start2.getStartTime());
+        });;
+        grid.addColumn(appointmentDto -> appointmentDto.getEndTime()).setHeader("Bis:");
+        
         
 
         grid.addItemClickListener(appointmentDtoItemClickEvent ->

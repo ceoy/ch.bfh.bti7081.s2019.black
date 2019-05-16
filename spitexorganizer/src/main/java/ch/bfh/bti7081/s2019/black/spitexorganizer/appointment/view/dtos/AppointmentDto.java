@@ -17,9 +17,6 @@ public class AppointmentDto {
     private ReportDto report;
     static final private DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
     
-    public String getName() {
-      return this.patient.getName() + " "  + this.patient.getSurname();
-    } 
 
     public PatientDto getPatient() {
         return patient;
@@ -48,25 +45,30 @@ public class AppointmentDto {
     public LocalDateTime getStart() {
         return start;
     }
+    public String getStartTime(){
+      return start.format(DateTimeFormatter.ofPattern("HH:mm")); 
+    }
 
     public void setStart(LocalDateTime start) {
         this.start = start;
     }
     
-    public String getFormattedStart() {
-      return end.format(FORMATTER);
-  }
     
     public LocalDateTime getEnd() {
       return end;
   }
-
-    public String getFormattedEnd() {
-        return end.format(FORMATTER);
+    
+    public String getEndTime(){
+      return end.format(DateTimeFormatter.ofPattern("HH:mm")); 
     }
+    
 
     public void setEnd(LocalDateTime end) {
         this.end = end;
+    }
+    
+    public String getDate() {
+      return end.format(DateTimeFormatter.ofPattern("dd.MM.yyyy")); 
     }
 
     public List<TaskDto> getTasks() {
