@@ -6,14 +6,18 @@ import ch.bfh.bti7081.s2019.black.spitexorganizer.appointment.view.dtos.Appointm
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.grid.GridSortOrder;
+import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.html.NativeButton;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.data.provider.SortDirection;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouterLayout;
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.data.domain.Sort.Direction;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * The main view contains a button and a click listener.
@@ -25,12 +29,17 @@ public class AppointmentView extends VerticalLayout implements RouterLayout {
         Button button = new Button("Click me TEST  WORKS!!!!!!",
                 event -> Notification.show("Clicked!"));
         add(button);
+        
         List<AppointmentDto> appointmentDtos = appointmentApi.findAll();
         Grid<AppointmentDto> grid = new Grid<>();
         grid.setItems(appointmentDtos);
-        grid.addColumn(AppointmentDto::getId).setHeader("ID");
-        //grid.addColumn(AppointmentDto::getName).setHeader("Name");
-        grid.addColumn(AppointmentDto::getStart).setHeader("START");
+        grid.addColumn(appointmentDto -> appointmentDto.getPatient().getName() + " " + appointmentDto.getPatient().getSurname()).setHeader("Patienten Name:").setWidth("200px");
+        grid.addColumn(appointmentDto -> appointmentDto.getDate()).setHeader("Datum");
+        
+        grid.addColumn(appointmentDto -> appointmentDto.getStartTime()).setHeader("Von:");
+        grid.addColumn(appointmentDto -> appointmentDto.getEndTime()).setHeader("Bis:");
+        
+        
 
         grid.addItemClickListener(appointmentDtoItemClickEvent ->
                 UI.getCurrent().navigate(AppointmentDetailView.class, appointmentDtoItemClickEvent.getItem().getId())
@@ -45,18 +54,6 @@ public class AppointmentView extends VerticalLayout implements RouterLayout {
         add(nativeButton);
 
         // create and add a fuckton of buttons so i can see the navbar in action :)
-        add(new NativeButton("LEAVE MAIN"));
-        add(new NativeButton("LEAVE MAIN"));
-        add(new NativeButton("LEAVE MAIN"));
-        add(new NativeButton("LEAVE MAIN"));
-        add(new NativeButton("LEAVE MAIN"));
-        add(new NativeButton("LEAVE MAIN"));
-        add(new NativeButton("LEAVE MAIN"));
-        add(new NativeButton("LEAVE MAIN"));
-        add(new NativeButton("LEAVE MAIN"));
-        add(new NativeButton("LEAVE MAIN"));
-        add(new NativeButton("LEAVE MAIN"));
-        add(new NativeButton("LEAVE MAIN"));
-        add(new NativeButton("LEAVE MAIN"));
+        //add(new NativeButton("LEAVE MAIN"));
     }
 }

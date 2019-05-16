@@ -5,6 +5,7 @@ import ch.bfh.bti7081.s2019.black.spitexorganizer.report.view.dtos.ReportDto;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.task.view.dtos.TaskDto;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class AppointmentDto {
@@ -14,6 +15,7 @@ public class AppointmentDto {
     private List<TaskDto> tasks;
     private PatientDto patient;
     private ReportDto report;
+    
 
     public PatientDto getPatient() {
         return patient;
@@ -42,17 +44,30 @@ public class AppointmentDto {
     public LocalDateTime getStart() {
         return start;
     }
+    public String getStartTime(){
+      return start.format(DateTimeFormatter.ofPattern("HH:mm")); 
+    }
 
     public void setStart(LocalDateTime start) {
         this.start = start;
     }
-
+    
+    
     public LocalDateTime getEnd() {
-        return end;
+      return end;
+  }
+    
+    public String getEndTime(){
+      return end.format(DateTimeFormatter.ofPattern("HH:mm")); 
     }
+    
 
     public void setEnd(LocalDateTime end) {
         this.end = end;
+    }
+    
+    public String getDate() {
+      return end.format(DateTimeFormatter.ofPattern("dd.MM.yyyy")); 
     }
 
     public List<TaskDto> getTasks() {
