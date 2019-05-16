@@ -37,7 +37,7 @@ public class AppointmentView extends VerticalLayout implements RouterLayout {
         grid.addColumn(appointmentDto -> appointmentDto.getDate()).setHeader("Datum");
         
         grid.addColumn(appointmentDto -> appointmentDto.getEndTime()).setHeader("Bis:");
-        
+        grid.addColumn(appointmentDto -> appointmentDto.getStartTime()).setHeader("Von:");
         
 
         grid.addItemClickListener(appointmentDtoItemClickEvent ->
