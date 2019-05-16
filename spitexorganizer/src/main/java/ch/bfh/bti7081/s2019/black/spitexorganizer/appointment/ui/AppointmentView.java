@@ -15,7 +15,7 @@ import com.vaadin.flow.data.provider.SortDirection;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouterLayout;
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.data.domain.Sort.Direction;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,10 +35,7 @@ public class AppointmentView extends VerticalLayout implements RouterLayout {
         grid.setItems(appointmentDtos);
         grid.addColumn(appointmentDto -> appointmentDto.getPatient().getName() + " " + appointmentDto.getPatient().getSurname()).setHeader("Patienten Name:").setWidth("200px");
         grid.addColumn(appointmentDto -> appointmentDto.getDate()).setHeader("Datum");
-        grid.addColumn(appointmentDto -> appointmentDto.getStartTime()).setHeader("Von:").setComparator((start1,start2)->
-        {
-          return start1.getStartTime().compareTo(start2.getStartTime());
-        });;
+        
         grid.addColumn(appointmentDto -> appointmentDto.getEndTime()).setHeader("Bis:");
         
         

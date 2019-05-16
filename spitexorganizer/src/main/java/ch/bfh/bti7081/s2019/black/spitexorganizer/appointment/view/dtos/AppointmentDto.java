@@ -15,7 +15,6 @@ public class AppointmentDto {
     private List<TaskDto> tasks;
     private PatientDto patient;
     private ReportDto report;
-    static final private DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
     
 
     public PatientDto getPatient() {
