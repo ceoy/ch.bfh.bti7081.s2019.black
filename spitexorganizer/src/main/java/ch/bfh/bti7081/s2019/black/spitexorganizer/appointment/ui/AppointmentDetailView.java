@@ -4,6 +4,7 @@ import ch.bfh.bti7081.s2019.black.spitexorganizer.MainLayout;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.appointment.api.AppointmentApi;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.appointment.view.dtos.AppointmentDto;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.encoder.LongToStringEncoder;
+import ch.bfh.bti7081.s2019.black.spitexorganizer.evaluation.ui.EvaluationViewCreate;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.patient.view.dtos.PatientDto;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.report.api.ReportApi;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.report.view.dtos.ReportDto;
@@ -52,14 +53,18 @@ public class AppointmentDetailView extends PolymerTemplate<AppointmentDetailView
     private Paragraph txtDate;
 
     private AppointmentDto appointment;
-
+    //private long patientId = appointment.getId();
+    
     private AppointmentApi appointmentApi;
 
     private ReportApi reportApi;
 
     @EventHandler
     private void handleCreateEvaluation() {
-        System.out.println("Hello world!");
+        //System.out.println("Hello world!");
+    	//long patientId = appointment.getPatient().getId();
+    	//PatientDto patient = appointment.getPatient();
+    	UI.getCurrent().navigate(EvaluationViewCreate.class, this.appointment.getPatient().getId());
     }
 
     @EventHandler
