@@ -28,6 +28,9 @@ public class Employee {
     @Column(name = "Password", nullable = false)
     private String password;
 
+    @Column(name = "role", nullable = false)
+    private String role;
+
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "employee", cascade = CascadeType.MERGE)
     private List<Appointment> appointments;
 
@@ -85,5 +88,13 @@ public class Employee {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

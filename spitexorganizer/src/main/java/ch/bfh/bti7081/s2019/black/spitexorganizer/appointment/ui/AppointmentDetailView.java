@@ -13,6 +13,7 @@ import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.Paragraph;
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.polymertemplate.EventHandler;
 import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
@@ -21,6 +22,7 @@ import com.vaadin.flow.router.*;
 import com.vaadin.flow.templatemodel.Encode;
 import com.vaadin.flow.templatemodel.TemplateModel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -69,7 +71,7 @@ public class AppointmentDetailView extends PolymerTemplate<AppointmentDetailView
             String linkToGoogleMaps = URLEncoder.encode(patient.getStreet() + ", " + patient.getPlz() + " " + patient.getCity(), "UTF-8");
             UI.getCurrent().getPage().executeJavaScript("window.open(\"" + googleMapsString + linkToGoogleMaps + "\", \"_blank\");");
         } catch (UnsupportedEncodingException e) {
-            // ok that is bad :(
+            Notification.show("Der Link zu Google Maps konnte nicht geöffnet werden.");
         }
     }
 

@@ -1,12 +1,12 @@
 package ch.bfh.bti7081.s2019.black.spitexorganizer;
 
-import ch.bfh.bti7081.s2019.black.spitexorganizer.appointment.ui.AppointmentDetailView;
+import ch.bfh.bti7081.s2019.black.spitexorganizer.admin.ui.AdminView;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.appointment.ui.AppointmentView;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.appointment.ui.TestView;
+import ch.bfh.bti7081.s2019.black.spitexorganizer.security.SecurityUtil;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.UI;
-import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.polymertemplate.EventHandler;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
@@ -28,20 +28,28 @@ public class NavigationMenu extends PolymerTemplate<NavigationMenu.NavigationMen
         menuItems.add(new MenuItem(AppointmentView.class, "Wochenplanung"));
         menuItems.add(new MenuItem(TestView.class, "Evaluation"));
 
+        if (SecurityUtil.isUserLoggedIn()) {
+
+            if (SecurityUtil.isAccessGranted(AdminView.class)) {
+                menuItems.add(new MenuItem(AdminView.class, "Admin"));
+            }
+
+            // add a menu item that will log you out.
+            menuItems.add(new SpecialMenuItem("Logout", () ->
+                    UI.getCurrent().getPage().executeJavaScript("location.assign('logout')")));
+        }
+
         getModel().setMenu(menuItems);
     }
 
     @EventHandler
     private void handleMenuClick(@RepeatIndex int index) {
         // navigate
+        MenuItem menuItem = menuItems.get(index);
+        if (menuItem.getClass().equals(SpecialMenuItem.class)) {
+            ((SpecialMenuItem) menuItem).getAction().run();
+        }
         UI.getCurrent().navigate(menuItems.get(index).target);
-    }
-
-    private void createTestButton() {
-        Button button = new Button("Test Appointemnt Detail");
-        button.addClickListener(e -> UI.getCurrent().navigate(AppointmentDetailView.class, 1L));
-
-        // buttonContainer.add(button);
     }
 
     public interface NavigationMenuModel extends TemplateModel {
@@ -60,6 +68,19 @@ public class NavigationMenu extends PolymerTemplate<NavigationMenu.NavigationMen
 
         public String getName() {
             return name;
+        }
+    }
+
+    public class SpecialMenuItem extends MenuItem {
+        private Runnable action;
+
+        public SpecialMenuItem(String name, Runnable action) {
+            super(Component.class, name);
+            this.action = action;
+        }
+
+        public Runnable getAction() {
+            return action;
         }
     }
 
