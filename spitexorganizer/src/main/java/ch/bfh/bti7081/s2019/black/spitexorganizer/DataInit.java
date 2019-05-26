@@ -5,6 +5,7 @@ import ch.bfh.bti7081.s2019.black.spitexorganizer.appointment.model.Appointment;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.employee.dataaccess.EmployeeRepository;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.employee.model.Employee;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.evaluation.dataaccess.EvaluationRepository;
+import ch.bfh.bti7081.s2019.black.spitexorganizer.evaluation.model.Evaluation;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.patient.dataaccess.PatientRepository;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.patient.model.Patient;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.report.dataaccess.ReportRepository;
@@ -46,6 +47,8 @@ public class DataInit implements ApplicationRunner {
         Employee employee = createSpitexMitarbeiter();
 
         Patient patient = createPatient();
+        
+        Evaluation evaluation1 = createEvaluation(patient);
 
         // create first appointment
         Appointment appointment1 = createAppointment();
@@ -121,6 +124,13 @@ public class DataInit implements ApplicationRunner {
         appointment.setReport(createEmptyReport(appointment));
 
         return appointmentRepository.save(appointment);
+    }
+    
+    private Evaluation createEvaluation(Patient patient)  {
+    	Evaluation evaluation = new Evaluation();
+    	evaluation.setPatient(patient);
+    	evaluation.setText("Lorem Ipsum");
+    	return evaluationRepository.save(evaluation);
     }
 
 }

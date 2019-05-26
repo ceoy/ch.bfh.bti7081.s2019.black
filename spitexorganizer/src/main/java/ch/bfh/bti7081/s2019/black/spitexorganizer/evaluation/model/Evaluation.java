@@ -60,6 +60,14 @@ public class Evaluation {
     public void setReports(List<Report> reports) {
         this.reports = reports;
     }
+    
+	public void setPatient(Patient patient) {
+		this.patient = patient;
+	}
+
+	public Patient getPatient() {
+		return this.patient;
+	}
 
 
 }

@@ -1,5 +1,6 @@
 package ch.bfh.bti7081.s2019.black.spitexorganizer.evaluation.ui;
 
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,7 @@ import ch.bfh.bti7081.s2019.black.spitexorganizer.appointment.ui.AppointmentDeta
 import ch.bfh.bti7081.s2019.black.spitexorganizer.appointment.view.dtos.AppointmentDto;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.evaluation.api.EvaluationApi;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.evaluation.view.dtos.EvaluationDto;
+import ch.bfh.bti7081.s2019.black.spitexorganizer.patient.view.dtos.PatientDto;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.report.api.ReportApi;
 
 /**
@@ -35,29 +37,48 @@ import ch.bfh.bti7081.s2019.black.spitexorganizer.report.api.ReportApi;
 @HtmlImport("frontend://src/EvaluationCreate.html")
 @PageTitle("Create Evaluation")
 @Route(value = "evaluation-create", layout = MainLayout.class)
-public class EvaluationViewCreate  extends PolymerTemplate<AppointmentDetailView.TaskModel> implements RouterLayout, HasUrlParameter<Long> {
+public class EvaluationViewCreate extends PolymerTemplate<AppointmentDetailView.TaskModel> implements RouterLayout, HasUrlParameter<Long> {
 	
-    private H1 patientName;
-    @Id("txt-name")
-    private Paragraph txtName;
-    @Id("txt-street")
-    private Paragraph txtStreet;
-    @Id("txt-city")
-    private Paragraph txtCity;
-    @Id("txt-phone")
-    private Paragraph txtPhone;
-    @Id("txt-mail")
-    private Paragraph txtMail;
-    
-    private EvaluationDto appointment;
+	private H1 patientName;
+	@Id("txt-name")
+	private Paragraph txtName;
+	@Id("txt-street")
+	private Paragraph txtStreet;
+	@Id("txt-city")
+	private Paragraph txtCity;
+	@Id("txt-phone")
+	private Paragraph txtPhone;
+	@Id("txt-mail")
+	private Paragraph txtMail;
 
-    private EvaluationApi appointmentApi;
-    
+	private EvaluationDto evaluation;
+	private AppointmentDto appointment;
+
+	private EvaluationApi evaluationApi;
+	private AppointmentApi appointmentApi;
+
 	@Override
-	public void setParameter(BeforeEvent event, Long parameter) {
-		// TODO Auto-generated method stub
-		
+	public void setParameter(BeforeEvent beforeEvent, Long appointmentId) {
+		AppointmentDto appointmentDto = appointmentApi.findById(appointmentId);
+		//EvaluationDto evaluationDto = evaluationApi.findById(patientId);
+		if (appointmentDto == null) {
+			System.out.println("No Data Found!");
+			return;
+		}
+
+		PatientDto patient = appointmentDto.getPatient();
+
+		// set values to view
+		String patientFullName = patient.getSurname() + " " + patient.getName();
+		this.patientName.setText(patientFullName);
+		this.txtName.setText(patientFullName);
+		this.txtStreet.setText(patient.getStreet());
+		this.txtCity.setText(patient.getPlz() + " " + patient.getCity());
+		this.txtPhone.setText(patient.getPhoneNumber());
+		this.txtMail.setText(patient.getMail());
+
+		//this.evaluation = evaluationDto;
+		this.appointment = appointmentDto;
 	}
-    
-    
+
 }

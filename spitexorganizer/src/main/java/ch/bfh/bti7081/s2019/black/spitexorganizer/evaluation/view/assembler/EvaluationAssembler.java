@@ -2,6 +2,7 @@ package ch.bfh.bti7081.s2019.black.spitexorganizer.evaluation.view.assembler;
 
 import ch.bfh.bti7081.s2019.black.spitexorganizer.evaluation.model.Evaluation;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.evaluation.view.dtos.EvaluationDto;
+import ch.bfh.bti7081.s2019.black.spitexorganizer.patient.view.assembler.PatientAssembler;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.report.view.assembler.ReportAssembler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
