@@ -14,7 +14,11 @@ public class EvaluationDto {
     public PatientDto getPatient() {
         return patient;
     }
-    
+
+    public void setPatient(PatientDto patient) {
+        this.patient = patient;
+    }
+
     public Long getId() {
         return id;
     }

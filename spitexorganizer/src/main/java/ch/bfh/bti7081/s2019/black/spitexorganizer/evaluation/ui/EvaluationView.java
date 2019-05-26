@@ -21,10 +21,9 @@ public class EvaluationView extends VerticalLayout implements RouterLayout {
         List<EvaluationDto> evaluationDtos = evaluationApi.findAll();
         Grid<EvaluationDto> grid = new Grid<>();
         grid.setItems(evaluationDtos);
-        //grid.addColumn(evaluationDto -> evaluationDto.getPatient().getName() + " " + evaluationDto.getPatient().getSurname()).setHeader("Patienten Name:").setWidth("200px");
-        grid.addColumn(evaluationDto -> evaluationDto.getId()).setHeader("ID");
-        //grid.addColumn(evaluationDto -> evaluationDto.getPatient().getName()).setHeader("Name");
-        grid.addColumn(evaluationDto -> evaluationDto.getText()).setHeader("Text");
+        grid.addColumn(evaluationDto -> evaluationDto.getPatient().getName() + " " + evaluationDto.getPatient().getSurname()).setHeader("Patienten Name:").setWidth("200px");
+        grid.addColumn(evaluationDto -> evaluationDto.getPatient().getName()).setHeader("Name");
+        grid.addColumn(EvaluationDto::getText).setHeader("Text");
         
         //grid.addColumn(evaluationDto -> evaluationDto.getStartTime()).setHeader("Von:");
         //grid.addColumn(evaluationDto -> evaluationDto.getEndTime()).setHeader("Bis:");

@@ -48,7 +48,7 @@ public class DataInit implements ApplicationRunner {
 
         Patient patient = createPatient();
         
-        Evaluation evaluation1 = createEvaluation(patient);
+        createEvaluation(patient);
 
         // create first appointment
         Appointment appointment1 = createAppointment();

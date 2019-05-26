@@ -34,6 +34,16 @@ public class PatientAssembler {
 
 
     public PatientDto toDto(Patient patient) {
+        PatientDto patientDto = defaultDto(patient);
+        patientDto.setEvaluations(evaluationAssembler.toDtos(patient.getEvaluations()));
+        return patientDto;
+    }
+
+    public PatientDto toEvaluationDto(Patient patient) {
+        return defaultDto(patient);
+    }
+
+    private PatientDto defaultDto(Patient patient) {
         PatientDto patientDtos = new PatientDto();
         patientDtos.setId(patient.getId());
         patientDtos.setCity(patient.getCity());
@@ -43,7 +53,6 @@ public class PatientAssembler {
         patientDtos.setStreet(patient.getStreet());
         patientDtos.setPlz(patient.getPlz());
         patientDtos.setPhoneNumber(patient.getPhoneNumber());
-        patientDtos.setEvaluations(evaluationAssembler.toDtos(patient.getEvaluations()));
         return patientDtos;
     }
 

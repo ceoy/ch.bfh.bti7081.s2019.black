@@ -16,6 +16,9 @@ public class EvaluationAssembler {
     @Autowired
     ReportAssembler reportAssembler;
 
+    @Autowired
+    PatientAssembler patientAssembler;
+
     public List<EvaluationDto> toDtos(List<Evaluation> evaluations) {
         List<EvaluationDto> evaluationDtos = new ArrayList<>();
         for (Evaluation evaluation : evaluations) {
@@ -29,6 +32,7 @@ public class EvaluationAssembler {
         evaluationDtos.setId(evaluation.getId());
         evaluationDtos.setText(evaluation.getText());
         evaluationDtos.setReports(reportAssembler.toDtos(evaluation.getReports()));
+        evaluationDtos.setPatient(patientAssembler.toEvaluationDto(evaluation.getPatient()));
         return evaluationDtos;
     }
 }
