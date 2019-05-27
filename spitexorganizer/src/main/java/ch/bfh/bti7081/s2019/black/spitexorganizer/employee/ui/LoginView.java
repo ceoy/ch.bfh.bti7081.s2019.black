@@ -6,14 +6,17 @@ import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
-import com.vaadin.flow.router.*;
+import com.vaadin.flow.router.BeforeEnterEvent;
+import com.vaadin.flow.router.BeforeEnterObserver;
+import com.vaadin.flow.router.PageTitle;
+import com.vaadin.flow.router.Route;
 import com.vaadin.flow.templatemodel.TemplateModel;
 
 @Tag("login-view")
 @HtmlImport("frontend://src/Login.html")
 @PageTitle("LoginView")
 @Route(value = "login")
-public class LoginView extends PolymerTemplate<TemplateModel> implements AfterNavigationObserver, BeforeEnterObserver {
+public class LoginView extends PolymerTemplate<TemplateModel> implements BeforeEnterObserver {
 
     public LoginView() {
     }
@@ -26,12 +29,4 @@ public class LoginView extends PolymerTemplate<TemplateModel> implements AfterNa
             event.rerouteTo(AppointmentView.class);
         }
     }
-
-    @Override
-    public void afterNavigation(AfterNavigationEvent event) {
-        /*login.setError(
-                event.getLocation().getQueryParameters().getParameters().containsKey(
-                        "error"));*/
-    }
 }
-
