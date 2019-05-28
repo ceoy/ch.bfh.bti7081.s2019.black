@@ -6,6 +6,7 @@ import ch.bfh.bti7081.s2019.black.spitexorganizer.appointment.view.dtos.Appointm
 import ch.bfh.bti7081.s2019.black.spitexorganizer.encoder.LongToStringEncoder;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.patient.view.dtos.PatientDto;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.report.api.ReportApi;
+import ch.bfh.bti7081.s2019.black.spitexorganizer.report.ui.ReportView;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.report.view.dtos.ReportDto;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.task.view.dtos.TaskDto;
 import com.vaadin.flow.component.Tag;
@@ -74,10 +75,9 @@ public class AppointmentDetailView extends PolymerTemplate<AppointmentDetailView
     }
 
     @EventHandler
-    private void handleShowAllEvaluations() {
+    private void handleShowAllReports() {
         long patientId = appointment.getPatient().getId();
-        List<ReportDto> reports = reportApi.findByPatientId(patientId);
-        reports.forEach(reportDto -> System.out.println(reportDto.toString()));
+        UI.getCurrent().navigate(ReportView.class, patientId);
     }
 
     @Override
