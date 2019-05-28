@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface ReportRepository extends JpaRepository<Report, Long> {
     @Query(nativeQuery = true,
-            value = "Select * from REPORT where ID in (SELECT a.REPORT_ID FROM APPOINTMENT AS a WHERE a.PATIENT_ID = ?!)")
+            value = "Select * from REPORT where ID in (SELECT a.REPORT_ID FROM APPOINTMENT AS a WHERE a.PATIENT_ID = ?)")
     List<Report> findByPatientId(long id);
 
     Report findByAppointmentId(long id);
