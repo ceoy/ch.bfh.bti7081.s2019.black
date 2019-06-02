@@ -3,8 +3,7 @@ package ch.bfh.bti7081.s2019.black.spitexorganizer;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.appointment.ui.AppointmentDetailView;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.appointment.ui.AppointmentView;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.appointment.ui.TestView;
-import ch.bfh.bti7081.s2019.black.spitexorganizer.evaluation.ui.EvaluationView;
-
+import ch.bfh.bti7081.s2019.black.spitexorganizer.evaluation.ui.EvaluationListView;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.UI;
@@ -28,7 +27,7 @@ public class NavigationMenu extends PolymerTemplate<NavigationMenu.NavigationMen
     public NavigationMenu() {
         // add elements
         menuItems.add(new MenuItem(AppointmentView.class, "Wochenplanung"));
-        menuItems.add(new MenuItem(EvaluationView.class, "Evaluation"));
+        menuItems.add(new MenuItem(EvaluationListView.class, "Evaluation"));
 
         getModel().setMenu(menuItems);
     }
