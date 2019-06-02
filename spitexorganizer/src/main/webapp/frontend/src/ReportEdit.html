@@ -2,7 +2,7 @@
 <link rel="import" href="../bower_components/polymer/lib/elements/dom-repeat.html">
 
 <!-- Defines the hello-world element -->
-<dom-module id="appointment-detail" class="container">
+<dom-module id="report-edit" class="container">
     <link rel="import" href="../style/normalize.min.css" type="css">
     <link rel="import" href="../style/skeleton.min.css" type="css">
     <link rel="import" href="../style/tasklist.css" type="css">
@@ -11,22 +11,7 @@
         <!-- Input element that shows the greeting from the model -->
         <h1 id="patient-name">Patient X</h1>
         <div class="row">
-            <div class="one-half column">
-                <h4>Informationen</h4>
-                <p id="txt-date"></p>
 
-                <br/>
-                <h5>Patient</h5>
-                <p id="txt-name"></p>
-                <p id="txt-street"></p>
-                <p id="txt-city"></p>
-                <br/>
-                <p id="txt-phone"></p>
-                <p id="txt-mail"></p>
-
-                <br/>
-                <button on-click="handleGoToRoute">Karte</button>
-            </div>
             <div class="one-half column">
                 <h4>Taskliste</h4>
                 <ul id="tasks" class="task-list">
@@ -39,21 +24,39 @@
                         </li>
                     </template>
                 </ul>
+
+                <template is="dom-if" if="{{editable}}">
+                    <button id="add-task" on-click="addTask">Task hinzufügen</button>
+                </template>
+            </div>
+
+            <div class="one-half column">
+                <h4>Bemerkung</h4>
+                <template is="dom-if" if="{{editable}}">
+                    <textarea class="u-full-width" id="description" value="{{description::input}}"></textarea>
+                </template>
+                <template is="dom-if" if="{{!editable}}">
+                    {{description}}
+                </template>
+                <br/>
             </div>
         </div>
 
-        <button id="btn-all-reports" on-click="handleShowAllReports">Alle Verlaufsberichte</button>
-        <button id="btn-create-report" on-click="handleCreateReport">Verlaufsbericht erstellen</button>
+        <template is="dom-if" if="{{editable}}">
+            <button class="button-primary" on-click="handleSaveReport">Speichern</button>
+            <button class="button-primary" on-click="handleFinishReport">Speichern und Abschliessen</button>
+        </template>
+
     </template>
 
     <!-- Polymer boilerplate to register the hello-world element -->
     <script>
-        class AppointmentDetail extends Polymer.Element {
+        class ReportEdit extends Polymer.Element {
             static get is() {
-                return 'appointment-detail'
+                return 'report-edit'
             }
         }
 
-        customElements.define(AppointmentDetail.is, AppointmentDetail);
+        customElements.define(ReportEdit.is, ReportEdit);
     </script>
 </dom-module>
