@@ -96,7 +96,7 @@ public class DataInit implements ApplicationRunner {
 
     private Report createEmptyReport(Appointment appointment) {
         Report report = new Report();
-        report.setDescription("i need a test description :)");
+        report.setDescription("");
         report.setEdit(true);
         report.setAppointment(appointment);
         return reportRepository.save(report);

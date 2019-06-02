@@ -26,12 +26,9 @@ public class ReportService {
     }
 
     public void update(ReportDto reportDto) {
-        Report report = reportRepository.findById(reportDto.getId()).orElse(null);
-        if (report == null) return;
-
+        Report report = reportRepository.getOne(reportDto.getId());
         report.setEdit(reportDto.getEdit());
         report.setDescription(reportDto.getDescription());
-        
         reportRepository.save(report);
     }
 }

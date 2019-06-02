@@ -5,16 +5,15 @@ import ch.bfh.bti7081.s2019.black.spitexorganizer.appointment.api.AppointmentApi
 import ch.bfh.bti7081.s2019.black.spitexorganizer.appointment.view.dtos.AppointmentDto;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.encoder.LongToStringEncoder;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.patient.view.dtos.PatientDto;
-import ch.bfh.bti7081.s2019.black.spitexorganizer.report.ui.ReportEditView;
+import ch.bfh.bti7081.s2019.black.spitexorganizer.report.api.ReportApi;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.report.ui.ReportView;
-import ch.bfh.bti7081.s2019.black.spitexorganizer.task.api.TaskApi;
+import ch.bfh.bti7081.s2019.black.spitexorganizer.report.view.dtos.ReportDto;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.task.view.dtos.TaskDto;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.Paragraph;
-import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.polymertemplate.EventHandler;
 import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
@@ -32,9 +31,11 @@ import java.util.List;
 
 @Tag("appointment-detail")
 @HtmlImport("frontend://src/AppointmentDetail.html")
-@PageTitle("Terminansicht")
+@PageTitle("Appointment Detail")
 @Route(value = "appointment", layout = MainLayout.class)
 public class AppointmentDetailView extends PolymerTemplate<AppointmentDetailView.TaskModel> implements RouterLayout, HasUrlParameter<Long> {
+
+    private final String googleMapsString = "https://www.google.com/maps/search/?api=1&query=";
 
     @Id("patient-name")
     private H1 patientName;
@@ -55,26 +56,21 @@ public class AppointmentDetailView extends PolymerTemplate<AppointmentDetailView
 
     private AppointmentApi appointmentApi;
 
-    private TaskApi taskApi;
+    private ReportApi reportApi;
 
     @EventHandler
-    private void handleCreateReport() {
-        Long appointmentId = appointment.getId();
-        UI.getCurrent().navigate(ReportEditView.class, appointmentId);
+    private void handleCreateEvaluation() {
+        System.out.println("Hello world!");
     }
 
     @EventHandler
     private void handleGoToRoute() {
         try {
-            // open a google maps link in another tab that displays the destination (the address of the patient)
             PatientDto patient = appointment.getPatient();
             String linkToGoogleMaps = URLEncoder.encode(patient.getStreet() + ", " + patient.getPlz() + " " + patient.getCity(), "UTF-8");
-            String googleMapsString = "https://www.google.com/maps/search/?api=1&query=";
             UI.getCurrent().getPage().executeJavaScript("window.open(\"" + googleMapsString + linkToGoogleMaps + "\", \"_blank\");");
         } catch (UnsupportedEncodingException e) {
             // ok that is bad :(
-            new Notification("Die Addresse konnte nicht geöffnet werden.", 3000).open();
-
         }
     }
 
@@ -119,14 +115,15 @@ public class AppointmentDetailView extends PolymerTemplate<AppointmentDetailView
         TaskDto changedTask = appointment.getTasks().get(id);
         // checkbox => only changes when you change the selected value
         changedTask.setDone(!changedTask.getDone());
-        // update the task
-        taskApi.update(changedTask);
+
     }
 
-    public AppointmentDetailView(@Autowired AppointmentApi appointmentApi, @Autowired TaskApi taskApi) {
+    public AppointmentDetailView(@Autowired AppointmentApi appointmentApi, @Autowired ReportApi reportApi) {
+        // save so we can use it later
         this.appointmentApi = appointmentApi;
-        this.taskApi = taskApi;
+        this.reportApi = reportApi;
     }
+
 
     public interface TaskModel extends TemplateModel {
         @Encode(value = LongToStringEncoder.class, path = "id")
