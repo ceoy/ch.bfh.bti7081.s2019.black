@@ -43,6 +43,8 @@ public class PatientAssembler {
         patientDtos.setStreet(patient.getStreet());
         patientDtos.setPlz(patient.getPlz());
         patientDtos.setPhoneNumber(patient.getPhoneNumber());
+        patientDtos.setEvaluationDue(patient.getEvaluationDue());
+        patientDtos.setLastEvaluation(patient.getLastEvaluation());
         patientDtos.setEvaluations(evaluationAssembler.toDtos(patient.getEvaluations()));
         return patientDtos;
     }

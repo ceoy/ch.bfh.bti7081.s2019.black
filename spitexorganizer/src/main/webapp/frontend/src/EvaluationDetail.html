@@ -1,0 +1,55 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/polymer/lib/elements/dom-repeat.html">
+
+<!-- Defines the hello-world element -->
+<dom-module id="evaluation-detail" class="container">
+    <link rel="import" href="../style/normalize.min.css" type="css">
+    <link rel="import" href="../style/skeleton.min.css" type="css">
+    <link rel="import" href="../style/appointmentdetail.css" type="css">
+
+    <template>
+        <!-- Input element that shows the greeting from the model -->
+        <h1 id="patient-name">Patient X</h1>
+        <div class="row">
+            <div class="one-half column">
+                <h4>Informationen</h4>
+                <p id="txt-date"></p>
+
+                <br/>
+                <h5>Patient</h5>
+                <p id="txt-name"></p>
+                <p id="txt-street"></p>
+                <p id="txt-city"></p>
+                <br/>
+                <p id="txt-phone"></p>
+                <p id="txt-mail"></p>
+
+                <br/>
+            </div>
+            <div class="one-half column">
+                <h4>Taskliste</h4>
+                <ul id="tasks" class="task-list">
+                    <template is="dom-repeat" items="[[tasks]]" as="task">
+                        <li>
+                            <input
+                                    on-change="valueUpdated"
+                                    type="checkbox"
+                                    checked="{{task.done::input}}"> {{task.description}}
+                        </li>
+                    </template>
+                </ul>
+            </div>
+        </div>
+    </template>
+
+    <!-- Polymer boilerplate to register the hello-world element -->
+    <script>
+        class AppointmentDetail extends Polymer.Element {
+            static get is() {
+                return 'appointment-detail'
+            }
+        }
+
+        customElements.define(AppointmentDetail.is, AppointmentDetail);
+    </script>
+</dom-module>

@@ -46,6 +46,7 @@ public class DataInit implements ApplicationRunner {
         Employee employee = createSpitexMitarbeiter();
 
         Patient patient = createPatient();
+        Patient patient2 = createPatient2();
 
         // create first appointment
         Appointment appointment1 = createAppointment();
@@ -74,7 +75,7 @@ public class DataInit implements ApplicationRunner {
         appointment1.setEmployee(employee);
 
         // create second appointment
-        appointment2.setPatient(patient);
+        appointment2.setPatient(patient2);
         appointment2.setEmployee(employee);
 
         // save appointments
@@ -91,8 +92,24 @@ public class DataInit implements ApplicationRunner {
         patient.setPlz("3250");
         patient.setStreet("Heilbachrain 17b");
         patient.setSurname("Tim");
+        patient.setEvaluationDue(false);
+        patient.setLastEvaluation(LocalDateTime.of(2019, 06, 01, 0, 0));
         return patientRepository.save(patient);
     }
+    
+    private Patient createPatient2() {
+      Patient patient = new Patient();
+      patient.setCity("Bern");
+      patient.setMail("DerRaphe@gmx.ch");
+      patient.setPhoneNumber("+41763448227");
+      patient.setName("Klembowski");
+      patient.setPlz("3008");
+      patient.setStreet("Europaplatz 1b");
+      patient.setSurname("Raphael");
+      patient.setEvaluationDue(true);
+      patient.setLastEvaluation(LocalDateTime.of(2019, 04, 05, 0, 0));
+      return patientRepository.save(patient);
+  }
 
     private Report createEmptyReport(Appointment appointment) {
         Report report = new Report();
