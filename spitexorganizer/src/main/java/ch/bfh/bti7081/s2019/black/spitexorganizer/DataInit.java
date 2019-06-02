@@ -19,6 +19,9 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.stream.Collectors;
 
 @Component
 public class DataInit implements ApplicationRunner {
@@ -74,14 +77,20 @@ public class DataInit implements ApplicationRunner {
         appointment1.setTasks(tasks);
         appointment1.setPatient(patient);
         appointment1.setEmployee(employee);
+        patient.setAppointments(Collections.singletonList(appointment1));
 
         // create second appointment
         appointment2.setPatient(patient2);
         appointment2.setEmployee(employee);
 
+        patient2.setAppointments(Collections.singletonList(appointment2));
+
         // save appointments
         appointmentRepository.save(appointment1);
         appointmentRepository.save(appointment2);
+
+        createEvaluation(patient);
+        createEvaluation(patient2);
     }
 
     private Patient createPatient() {
@@ -139,5 +148,14 @@ public class DataInit implements ApplicationRunner {
         appointment.setReport(createEmptyReport(appointment));
 
         return appointmentRepository.save(appointment);
+    }
+
+    private Evaluation createEvaluation(Patient patient) {
+        Evaluation evaluation = new Evaluation();
+        evaluation.setPatient(patient);
+        evaluation.setText("");
+        evaluation.setReports(patient.getAppointments().stream().map(Appointment::getReport).collect(Collectors.toList()));
+
+        return evaluationRepository.save(evaluation);
     }
 }

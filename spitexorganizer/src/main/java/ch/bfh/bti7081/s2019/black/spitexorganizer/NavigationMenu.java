@@ -15,6 +15,7 @@ import com.vaadin.flow.component.polymertemplate.RepeatIndex;
 import com.vaadin.flow.templatemodel.Include;
 import com.vaadin.flow.templatemodel.TemplateModel;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -15,7 +15,7 @@ public class PatientDto {
     private String mail;
 
     public String getLastEvaluation() {
-      return lastEvaluation.format(DateTimeFormatter.ofPattern("dd:MM:YYYY"));
+      return lastEvaluation.format(DateTimeFormatter.ofPattern("dd.MM.YYYY"));
     }
 
     public void setLastEvaluation(LocalDateTime lastEvaluation) {

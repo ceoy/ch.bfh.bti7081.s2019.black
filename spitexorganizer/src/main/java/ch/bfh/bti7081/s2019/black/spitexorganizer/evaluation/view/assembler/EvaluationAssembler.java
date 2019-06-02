@@ -33,6 +33,7 @@ public class EvaluationAssembler {
         evaluationDtos.setText(evaluation.getText());
         evaluationDtos.setReports(reportAssembler.toDtos(evaluation.getReports()));
         evaluationDtos.setPatient(patientAssembler.toEvaluationDto(evaluation.getPatient()));
+        evaluationDtos.setSent(evaluation.getSent());
         return evaluationDtos;
     }
 }

@@ -3,6 +3,7 @@ package ch.bfh.bti7081.s2019.black.spitexorganizer.evaluation.ui;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.MainLayout;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.appointment.api.AppointmentApi;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.appointment.view.dtos.AppointmentDto;
+import ch.bfh.bti7081.s2019.black.spitexorganizer.evaluation.view.dtos.EvaluationDto;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.patient.api.PatientApi;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.patient.view.dtos.PatientDto;
 import com.vaadin.flow.component.UI;
@@ -19,40 +20,32 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouterLayout;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort.Direction;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * The main view contains a button and a click listener.
+ * The evaluation overview is just a list of all patients and their last done evaluation.
  */
-
-@Route(value = "EvaluationList", layout = MainLayout.class)
+@Route(value = "evaluation/overview", layout = MainLayout.class)
+@PageTitle("Evaluationsübersicht")
 public class EvaluationListView extends VerticalLayout implements RouterLayout {
 
     public EvaluationListView(@Autowired PatientApi patientApi) {
-
-        
         List<PatientDto> patientDtos = patientApi.findAll();
+
+        // TODO: sort list
         Grid<PatientDto> grid = new Grid<>();
         grid.setItems(patientDtos);
-        grid.addColumn(patientDto -> patientDto.getName() + " " + patientDto.getSurname()).setHeader("Offene Evaluationen").setWidth("200px");
-        grid.addColumn(patientDto -> patientDto.getLastEvaluation()).setHeader("Letzte Evaluation:");
-        
-        
+        grid.addColumn(patientDto -> patientDto.getName() + " " + patientDto.getSurname()).setHeader("Offene Evaluationen");
+        grid.addColumn(PatientDto::getLastEvaluation).setHeader("Letzte Evaluation");
 
-        grid.addItemClickListener(evaluationDtoItemClickEvent ->
-                UI.getCurrent().navigate(EvaluationDetailView.class, evaluationDtoItemClickEvent.getItem().getId())
-        );
-        
-        add(grid);
-
-        NativeButton nativeButton = new NativeButton("Back to Main View");
-        nativeButton.addClickListener(e -> {
-            nativeButton.getUI().ifPresent(ui -> ui.navigate(""));
+        grid.addItemClickListener(clickedPatient -> {
+            List<EvaluationDto> evaluations = clickedPatient.getItem().getEvaluations();
+            EvaluationDto evaluationDto = evaluations.get(evaluations.size() - 1);
+            UI.getCurrent().navigate(EvaluationViewCreate.class, evaluationDto.getId());
         });
-        add(nativeButton);
 
-        // create and add a fuckton of buttons so i can see the navbar in action :)
-        //add(new NativeButton("LEAVE MAIN"));
+        add(grid);
     }
 }

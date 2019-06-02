@@ -21,7 +21,7 @@ public class Evaluation {
     @Column(name = "Text", nullable = false)
     private String text;
     
-    @Column(name = "Sent", nullable = true)
+    @Column(name = "Sent")
     private LocalDateTime sent;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "evaluation", cascade = CascadeType.MERGE)

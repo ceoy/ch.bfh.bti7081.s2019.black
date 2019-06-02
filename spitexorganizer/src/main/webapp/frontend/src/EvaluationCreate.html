@@ -9,11 +9,9 @@
 
     <template>
         <!-- Input element that shows the greeting from the model -->
-        <h1 id="patient-name">Patient X</h1>
+        <h4>Evaluation</h4>
         <div class="row">
             <div class="one-half column">
-                <h4>Evaluation</h4>
-                <br/>
                 <h5>Patient</h5>
                 <p id="txt-name"></p>
                 <p id="txt-street"></p>
@@ -21,20 +19,18 @@
                 <br/>
                 <p id="txt-phone"></p>
                 <p id="txt-mail"></p>
-				<br/>
+                <br/>
                 <br/>
             </div>
-			<div class="one-half column">
-				<form>
-					<input id="evaluation-form" type="text" text="form" value="saved-text"><br/>
-				</form>
-			</div>
+            <div class="one-half column">
+                <input id="evaluation-form" type="text"><br/>
+            </div>
         </div>
-		
-		<button id="btn-send-evaluations" type="submit" on-click="handleSend">Senden</button>
+
         <button id="btn-cancle-evaluations" on-click="handleCancel">Abbrechen</button>
-		<button id="btn-save-evaluation" type="submit" on-click="handleSave">Speichern</button>
-		
+        <button id="btn-save-evaluation" type="submit" on-click="handleSave">Speichern</button>
+        <button id="btn-send-evaluations" type="submit" on-click="handleSend">Senden</button>
+
     </template>
 
     <!-- Polymer boilerplate to register the hello-world element -->
