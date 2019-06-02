@@ -26,14 +26,14 @@
             </div>
 			<div class="one-half column">
 				<form>
-					<input type="text" name="evaluation-form"><br/>
+					<input id="evaluation-form" type="text" text="form" value="saved-text"><br/>
 				</form>
 			</div>
         </div>
 		
-		<button id="btn-send-evaluations" type="submit" on-click="handleSendEvaluation">Senden</button>
-        <button id="btn-cancle-evaluations" on-click="handleShowAllEvaluation">Abbrechen</button>
-		<button id="btn-save-evaluation" type="submit" on-click="handleSaveEvaluation">Speichern</button>
+		<button id="btn-send-evaluations" type="submit" on-click="handleSend">Senden</button>
+        <button id="btn-cancle-evaluations" on-click="handleCancel">Abbrechen</button>
+		<button id="btn-save-evaluation" type="submit" on-click="handleSave">Speichern</button>
 		
     </template>
 

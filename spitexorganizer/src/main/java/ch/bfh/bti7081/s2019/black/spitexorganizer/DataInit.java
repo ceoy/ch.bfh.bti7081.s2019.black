@@ -130,6 +130,7 @@ public class DataInit implements ApplicationRunner {
     	Evaluation evaluation = new Evaluation();
     	evaluation.setPatient(patient);
     	evaluation.setText("Lorem Ipsum");
+		evaluation.setSent(null);
     	return evaluationRepository.save(evaluation);
     }
 

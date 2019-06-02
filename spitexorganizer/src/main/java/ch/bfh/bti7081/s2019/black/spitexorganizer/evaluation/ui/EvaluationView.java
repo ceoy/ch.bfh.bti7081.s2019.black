@@ -1,9 +1,12 @@
 package ch.bfh.bti7081.s2019.black.spitexorganizer.evaluation.ui;
 
 import ch.bfh.bti7081.s2019.black.spitexorganizer.MainLayout;
+import ch.bfh.bti7081.s2019.black.spitexorganizer.appointment.ui.AppointmentDetailView;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.evaluation.api.EvaluationApi;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.evaluation.view.dtos.EvaluationDto;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.NativeButton;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -22,12 +25,12 @@ public class EvaluationView extends VerticalLayout implements RouterLayout {
         Grid<EvaluationDto> grid = new Grid<>();
         grid.setItems(evaluationDtos);
         grid.addColumn(evaluationDto -> evaluationDto.getPatient().getName() + " " + evaluationDto.getPatient().getSurname()).setHeader("Patienten Name:").setWidth("200px");
-        grid.addColumn(evaluationDto -> evaluationDto.getPatient().getName()).setHeader("Name");
+        //grid.addColumn(evaluationDto -> evaluationDto.getPatient().getName()).setHeader("Name");
         grid.addColumn(EvaluationDto::getText).setHeader("Text");
         
-        //grid.addColumn(evaluationDto -> evaluationDto.getStartTime()).setHeader("Von:");
-        //grid.addColumn(evaluationDto -> evaluationDto.getEndTime()).setHeader("Bis:");
-
+        grid.addItemClickListener(evaluationDtoItemClickEvent ->
+        UI.getCurrent().navigate(EvaluationViewCreate.class, evaluationDtoItemClickEvent.getItem().getId()));
+        
         add(grid);
 
         NativeButton nativeButton = new NativeButton("LEAVE MAIN");
