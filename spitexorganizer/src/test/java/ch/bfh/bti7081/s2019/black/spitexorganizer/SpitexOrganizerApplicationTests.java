@@ -12,4 +12,5 @@ public class SpitexOrganizerApplicationTests {
 	@Test
 	public void contextLoads() {
 	}
+
 }
