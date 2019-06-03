@@ -7,14 +7,15 @@ import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.BeforeEvent;
 import com.vaadin.flow.router.HasUrlParameter;
+import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
 @Route(value = "report", layout = MainLayout.class)
-
-public class ReportView extends VerticalLayout implements HasUrlParameter<Long>{
+@PageTitle("Verlaufsberichte")
+public class ReportView extends VerticalLayout implements HasUrlParameter<Long> {
 
     @Autowired ReportApi reportApi;
 
@@ -24,7 +25,7 @@ public class ReportView extends VerticalLayout implements HasUrlParameter<Long>{
         List<ReportDto> reports = reportApi.findByPatientId(aLong);
         Grid<ReportDto> grid = new Grid<>();
         grid.setItems(reports);
-        grid.addColumn(ReportDto::getId );
+        grid.addColumn(ReportDto::getId);
         grid.addColumn(ReportDto::getDescription);
         H1 title = new H1("Alle Verlaufsberichte");
         this.add(title);
