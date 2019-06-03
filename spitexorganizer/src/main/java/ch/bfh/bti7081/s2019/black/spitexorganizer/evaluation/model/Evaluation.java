@@ -5,6 +5,8 @@ import ch.bfh.bti7081.s2019.black.spitexorganizer.patient.model.Patient;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.report.model.Report;
 
 import javax.persistence.*;
+
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,6 +20,9 @@ public class Evaluation {
 
     @Column(name = "Text", nullable = false)
     private String text;
+    
+    @Column(name = "Sent")
+    private LocalDateTime sent;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "evaluation", cascade = CascadeType.MERGE)
     private List<Report> reports;
@@ -52,6 +57,14 @@ public class Evaluation {
     public void setText(String text) {
         this.text = text;
     }
+       
+    public LocalDateTime getSent() {
+        return sent;
+    }
+    
+    public void setSent(LocalDateTime sent) {
+        this.sent = sent;
+    }
 
     public List<Report> getReports() {
         return reports;
@@ -60,6 +73,14 @@ public class Evaluation {
     public void setReports(List<Report> reports) {
         this.reports = reports;
     }
+    
+	public void setPatient(Patient patient) {
+		this.patient = patient;
+	}
+
+	public Patient getPatient() {
+		return this.patient;
+	}
 
 
 }

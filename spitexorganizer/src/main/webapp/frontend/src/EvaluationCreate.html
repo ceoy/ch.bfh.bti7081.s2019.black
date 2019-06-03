@@ -1,0 +1,46 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/polymer/lib/elements/dom-repeat.html">
+
+<!-- Defines the hello-world element -->
+<dom-module id="evaluation-create" class="container">
+    <link rel="import" href="../style/normalize.min.css" type="css">
+    <link rel="import" href="../style/skeleton.min.css" type="css">
+    <link rel="import" href="../style/appointmentdetail.css" type="css">
+
+    <template>
+        <!-- Input element that shows the greeting from the model -->
+        <h4>Evaluation</h4>
+        <div class="row">
+            <div class="one-half column">
+                <h5>Patient</h5>
+                <p id="txt-name"></p>
+                <p id="txt-street"></p>
+                <p id="txt-city"></p>
+                <br/>
+                <p id="txt-phone"></p>
+                <p id="txt-mail"></p>
+                <br/>
+                <br/>
+            </div>
+            <div class="one-half column">
+                <input id="evaluation-form" type="text"><br/>
+            </div>
+        </div>
+
+        <button id="btn-cancle-evaluations" on-click="handleCancel">Abbrechen</button>
+        <button id="btn-save-evaluation" type="submit" on-click="handleSave">Speichern</button>
+        <button id="btn-send-evaluations" type="submit" on-click="handleSend">Senden</button>
+
+    </template>
+
+    <!-- Polymer boilerplate to register the hello-world element -->
+    <script>
+        class EvaluationCreate extends Polymer.Element {
+            static get is() {
+                return 'evaluation-create'
+            }
+        }
+
+        customElements.define(EvaluationCreate.is, EvaluationCreate);
+    </script>
+</dom-module>

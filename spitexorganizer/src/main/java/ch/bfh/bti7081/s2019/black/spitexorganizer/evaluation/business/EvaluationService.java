@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EvaluationService {
@@ -25,11 +26,21 @@ public class EvaluationService {
         return evaluationAssembler.toDtos(evaluationRepository.findByPatientId(id));
     }
 
+    public EvaluationDto findById(long id) {
+        Optional<Evaluation> evaluationOptional = evaluationRepository.findById(id);
+        return evaluationOptional.map(evaluation -> evaluationAssembler.toDto(evaluation)).orElse(null);
+    }
+
     public void update(EvaluationDto evaluationDto) {
-        Evaluation evaluation = evaluationRepository.getOne(evaluationDto.getId());
+        Evaluation evaluation = evaluationRepository.findById(evaluationDto.getId()).orElse(null);
+        if (evaluation == null) return;
+
         evaluation.setText(evaluationDto.getText());
         evaluationRepository.save(evaluation);
-
-        evaluationDto.getReports().forEach(reportDto -> reportService.update(reportDto));
     }
+
+    public List<EvaluationDto> findAll() {
+        return evaluationAssembler.toDtos(evaluationRepository.findAll());
+    }
+
 }
