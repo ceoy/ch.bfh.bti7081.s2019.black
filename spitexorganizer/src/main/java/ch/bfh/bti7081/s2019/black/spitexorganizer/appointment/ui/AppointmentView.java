@@ -7,6 +7,7 @@ import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.GridSortOrder;
+import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.html.NativeButton;
 import com.vaadin.flow.component.notification.Notification;
@@ -26,9 +27,8 @@ import java.util.stream.Collectors;
 public class AppointmentView extends VerticalLayout implements RouterLayout {
 
     public AppointmentView(@Autowired AppointmentApi appointmentApi) {
-        Button button = new Button("Click me TEST  WORKS!!!!!!",
-                event -> Notification.show("Clicked!"));
-        add(button);
+        // set a title to make it obvious where we are.
+        H1 title = new H1("Wochenplan");
         
         List<AppointmentDto> appointmentDtos = appointmentApi.findAll();
         Grid<AppointmentDto> grid = new Grid<>();
@@ -45,15 +45,7 @@ public class AppointmentView extends VerticalLayout implements RouterLayout {
                 UI.getCurrent().navigate(AppointmentDetailView.class, appointmentDtoItemClickEvent.getItem().getId())
         );
 
-        add(grid);
-
-        NativeButton nativeButton = new NativeButton("LEAVE MAIN");
-        nativeButton.addClickListener(e -> {
-            nativeButton.getUI().ifPresent(ui -> ui.navigate("test"));
-        });
-        add(nativeButton);
-
-        // create and add a fuckton of buttons so i can see the navbar in action :)
-        //add(new NativeButton("LEAVE MAIN"));
+        this.add(title);
+        this.add(grid);
     }
 }

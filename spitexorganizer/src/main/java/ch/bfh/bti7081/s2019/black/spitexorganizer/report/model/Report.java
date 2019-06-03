@@ -5,8 +5,10 @@ import ch.bfh.bti7081.s2019.black.spitexorganizer.evaluation.model.Evaluation;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.report.view.dtos.ReportDto;
 
 import javax.persistence.*;
+import javax.transaction.Transactional;
 
 @Entity
+@Transactional
 @Table(name = "REPORT")
 public class Report {
     @Id
