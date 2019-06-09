@@ -104,7 +104,7 @@ public class DataInit implements ApplicationRunner {
         Patient patient = new Patient();
         patient.setCity("Lyss");
         patient.setMail("tim@jahn.ch");
-        patient.setPhoneNumber("+41788046226");
+        patient.setPhoneNumber("+ 41788046226");
         patient.setName("Jahn");
         patient.setPlz("3250");
         patient.setStreet("Heilbachrain 17b");
