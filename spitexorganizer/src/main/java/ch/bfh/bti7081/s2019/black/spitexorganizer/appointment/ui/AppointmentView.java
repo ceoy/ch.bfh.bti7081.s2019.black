@@ -7,6 +7,11 @@ import ch.bfh.bti7081.s2019.black.spitexorganizer.employee.ui.LoginView;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.grid.GridSortOrder;
+import com.vaadin.flow.component.html.H1;
+import com.vaadin.flow.component.html.Label;
+import com.vaadin.flow.component.html.NativeButton;
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouterLayout;
@@ -21,7 +26,9 @@ import java.util.List;
 public class AppointmentView extends VerticalLayout implements RouterLayout {
 
     public AppointmentView(@Autowired AppointmentApi appointmentApi) {
-        // get the appointments
+        // set a title to make it obvious where we are.
+        H1 title = new H1("Wochenplan");
+        
         List<AppointmentDto> appointmentDtos = appointmentApi.findAll();
 
         // create the grid and populate it
@@ -37,11 +44,7 @@ public class AppointmentView extends VerticalLayout implements RouterLayout {
                 UI.getCurrent().navigate(AppointmentDetailView.class, appointmentDtoItemClickEvent.getItem().getId())
         );
 
-        // add grid to the layout
-        add(grid);
-
-        Button loginTest = new Button("login button");
-        loginTest.addClickListener(buttonClickEvent -> UI.getCurrent().navigate(LoginView.class));
-        add(loginTest);
+        this.add(title);
+        this.add(grid);
     }
 }

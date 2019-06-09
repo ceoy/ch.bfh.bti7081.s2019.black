@@ -4,9 +4,13 @@ import ch.bfh.bti7081.s2019.black.spitexorganizer.MainLayout;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.appointment.api.AppointmentApi;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.appointment.view.dtos.AppointmentDto;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.encoder.LongToStringEncoder;
+import ch.bfh.bti7081.s2019.black.spitexorganizer.evaluation.ui.EvaluationViewCreate;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.patient.view.dtos.PatientDto;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.report.api.ReportApi;
+import ch.bfh.bti7081.s2019.black.spitexorganizer.report.ui.ReportEditView;
+import ch.bfh.bti7081.s2019.black.spitexorganizer.report.ui.ReportView;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.report.view.dtos.ReportDto;
+import ch.bfh.bti7081.s2019.black.spitexorganizer.task.api.TaskApi;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.task.view.dtos.TaskDto;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.UI;
@@ -32,11 +36,9 @@ import java.util.List;
 
 @Tag("appointment-detail")
 @HtmlImport("frontend://src/AppointmentDetail.html")
-@PageTitle("Appointment Detail")
+@PageTitle("Terminansicht")
 @Route(value = "appointment", layout = MainLayout.class)
 public class AppointmentDetailView extends PolymerTemplate<AppointmentDetailView.TaskModel> implements RouterLayout, HasUrlParameter<Long> {
-
-    private final String googleMapsString = "https://www.google.com/maps/search/?api=1&query=";
 
     @Id("patient-name")
     private H1 patientName;
@@ -54,14 +56,16 @@ public class AppointmentDetailView extends PolymerTemplate<AppointmentDetailView
     private Paragraph txtDate;
 
     private AppointmentDto appointment;
+    //private long patientId = appointment.getId();
 
     private AppointmentApi appointmentApi;
 
-    private ReportApi reportApi;
+    private TaskApi taskApi;
 
     @EventHandler
-    private void handleCreateEvaluation() {
-        System.out.println("Hello world!");
+    private void handleCreateReport() {
+        Long appointmentId = appointment.getId();
+        UI.getCurrent().navigate(ReportEditView.class, appointmentId);
     }
 
     @EventHandler
@@ -69,6 +73,7 @@ public class AppointmentDetailView extends PolymerTemplate<AppointmentDetailView
         try {
             PatientDto patient = appointment.getPatient();
             String linkToGoogleMaps = URLEncoder.encode(patient.getStreet() + ", " + patient.getPlz() + " " + patient.getCity(), "UTF-8");
+            String googleMapsString = "https://www.google.com/maps/search/?api=1&query=";
             UI.getCurrent().getPage().executeJavaScript("window.open(\"" + googleMapsString + linkToGoogleMaps + "\", \"_blank\");");
         } catch (UnsupportedEncodingException e) {
             Notification.show("Der Link zu Google Maps konnte nicht geöffnet werden.");
@@ -76,10 +81,9 @@ public class AppointmentDetailView extends PolymerTemplate<AppointmentDetailView
     }
 
     @EventHandler
-    private void handleShowAllEvaluations() {
+    private void handleShowAllReports() {
         long patientId = appointment.getPatient().getId();
-        List<ReportDto> reports = reportApi.findByPatientId(patientId);
-        reports.forEach(reportDto -> System.out.println(reportDto.toString()));
+        UI.getCurrent().navigate(ReportView.class, patientId);
     }
 
     @Override
@@ -118,12 +122,15 @@ public class AppointmentDetailView extends PolymerTemplate<AppointmentDetailView
         // checkbox => only changes when you change the selected value
         changedTask.setDone(!changedTask.getDone());
 
+        // update the task
+        taskApi.update(changedTask);
+
     }
 
-    public AppointmentDetailView(@Autowired AppointmentApi appointmentApi, @Autowired ReportApi reportApi) {
+    public AppointmentDetailView(@Autowired AppointmentApi appointmentApi, @Autowired TaskApi taskApi) {
         // save so we can use it later
         this.appointmentApi = appointmentApi;
-        this.reportApi = reportApi;
+        this.taskApi = taskApi;
     }
 
 

@@ -18,6 +18,8 @@ public class ReportAssembler {
     }
 
     public ReportDto toDto(Report report) {
+        if (report == null) return null;
+
         ReportDto reportDtos = new ReportDto();
         reportDtos.setId(report.getId());
         reportDtos.setDescription(report.getDescription());

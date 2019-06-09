@@ -5,6 +5,7 @@ import ch.bfh.bti7081.s2019.black.spitexorganizer.appointment.model.Appointment;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.employee.dataaccess.EmployeeRepository;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.employee.model.Employee;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.evaluation.dataaccess.EvaluationRepository;
+import ch.bfh.bti7081.s2019.black.spitexorganizer.evaluation.model.Evaluation;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.patient.dataaccess.PatientRepository;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.patient.model.Patient;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.report.dataaccess.ReportRepository;
@@ -20,6 +21,9 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.stream.Collectors;
 
 @Component
 public class DataInit implements ApplicationRunner {
@@ -53,6 +57,7 @@ public class DataInit implements ApplicationRunner {
 
 
         Patient patient = createPatient();
+        Patient patient2 = createPatient2();
 
         // create first appointment
         Appointment appointment1 = createAppointment();
@@ -79,14 +84,20 @@ public class DataInit implements ApplicationRunner {
         appointment1.setTasks(tasks);
         appointment1.setPatient(patient);
         appointment1.setEmployee(employee);
+        patient.setAppointments(Collections.singletonList(appointment1));
 
         // create second appointment
-        appointment2.setPatient(patient);
+        appointment2.setPatient(patient2);
         appointment2.setEmployee(employee);
+
+        patient2.setAppointments(Collections.singletonList(appointment2));
 
         // save appointments
         appointmentRepository.save(appointment1);
         appointmentRepository.save(appointment2);
+
+        createEvaluation(patient);
+        createEvaluation(patient2);
     }
 
     private Patient createPatient() {
@@ -98,8 +109,24 @@ public class DataInit implements ApplicationRunner {
         patient.setPlz("3250");
         patient.setStreet("Heilbachrain 17b");
         patient.setSurname("Tim");
+        patient.setEvaluationDue(false);
+        patient.setLastEvaluation(LocalDateTime.of(2019, 06, 01, 0, 0));
         return patientRepository.save(patient);
     }
+
+    private Patient createPatient2() {
+      Patient patient = new Patient();
+      patient.setCity("Bern");
+      patient.setMail("DerRaphe@gmx.ch");
+      patient.setPhoneNumber("+41763448227");
+      patient.setName("Klembowski");
+      patient.setPlz("3008");
+      patient.setStreet("Europaplatz 1b");
+      patient.setSurname("Raphael");
+      patient.setEvaluationDue(true);
+      patient.setLastEvaluation(LocalDateTime.of(2019, 04, 05, 0, 0));
+      return patientRepository.save(patient);
+  }
 
     private void createAdmin(){
         Employee employee = new Employee();
@@ -142,4 +169,12 @@ public class DataInit implements ApplicationRunner {
         return appointmentRepository.save(appointment);
     }
 
+    private Evaluation createEvaluation(Patient patient) {
+        Evaluation evaluation = new Evaluation();
+        evaluation.setPatient(patient);
+        evaluation.setText("");
+        evaluation.setReports(patient.getAppointments().stream().map(Appointment::getReport).collect(Collectors.toList()));
+
+        return evaluationRepository.save(evaluation);
+    }
 }
