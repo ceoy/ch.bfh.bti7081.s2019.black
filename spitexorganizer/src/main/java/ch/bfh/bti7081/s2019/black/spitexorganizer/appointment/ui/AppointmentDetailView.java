@@ -4,12 +4,9 @@ import ch.bfh.bti7081.s2019.black.spitexorganizer.MainLayout;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.appointment.api.AppointmentApi;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.appointment.view.dtos.AppointmentDto;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.encoder.LongToStringEncoder;
-import ch.bfh.bti7081.s2019.black.spitexorganizer.evaluation.ui.EvaluationViewCreate;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.patient.view.dtos.PatientDto;
-import ch.bfh.bti7081.s2019.black.spitexorganizer.report.api.ReportApi;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.report.ui.ReportEditView;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.report.ui.ReportView;
-import ch.bfh.bti7081.s2019.black.spitexorganizer.report.view.dtos.ReportDto;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.task.api.TaskApi;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.task.view.dtos.TaskDto;
 import com.vaadin.flow.component.Tag;
@@ -26,7 +23,6 @@ import com.vaadin.flow.router.*;
 import com.vaadin.flow.templatemodel.Encode;
 import com.vaadin.flow.templatemodel.TemplateModel;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -97,7 +93,7 @@ public class AppointmentDetailView extends PolymerTemplate<AppointmentDetailView
 
         // set values to view
         String patientFullName = patient.getSurname() + " " + patient.getName();
-        this.patientName.setText(patientFullName);
+        this.patientName.setText("Termin " + patientFullName);
         this.txtName.setText(patientFullName);
         this.txtStreet.setText(patient.getStreet());
         this.txtCity.setText(patient.getPlz() + " " + patient.getCity());

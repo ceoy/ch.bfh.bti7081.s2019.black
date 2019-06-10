@@ -36,13 +36,19 @@ public class AppointmentAssembler {
     }
 
     public AppointmentDto toDto(Appointment appointment) {
+        AppointmentDto appointmentDto = toReportDto(appointment);
+        appointmentDto.setReport(reportAssembler.toDto(appointment.getReport()));
+        return appointmentDto;
+    }
+
+    public AppointmentDto toReportDto(Appointment appointment) {
         AppointmentDto appointmentDto = new AppointmentDto();
         appointmentDto.setId(appointment.getId());
         appointmentDto.setStart(appointment.getStart());
         appointmentDto.setEnd(appointment.getEnd());
         appointmentDto.setTasks(taskAssembler.toDtos(appointment.getTasks()));
         appointmentDto.setPatient(patientAssembler.toDto(appointment.getPatient()));
-        appointmentDto.setReport(reportAssembler.toDto(appointment.getReport()));
+
         return appointmentDto;
     }
 }

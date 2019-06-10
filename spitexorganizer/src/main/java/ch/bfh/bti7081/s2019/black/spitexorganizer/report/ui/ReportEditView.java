@@ -18,8 +18,6 @@ import com.vaadin.flow.component.polymertemplate.EventHandler;
 import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import com.vaadin.flow.component.polymertemplate.RepeatIndex;
-import com.vaadin.flow.component.textfield.TextArea;
-import com.vaadin.flow.component.textfield.TextAreaVariant;
 import com.vaadin.flow.router.*;
 import com.vaadin.flow.templatemodel.Encode;
 import com.vaadin.flow.templatemodel.TemplateModel;
@@ -106,7 +104,7 @@ public class ReportEditView extends PolymerTemplate<ReportEditView.ReportEditMod
         // save for later use (like saving)
         this.appointment = appointment;
 
-        patientName.setText(patient.getSurname() + " " + patient.getName());
+        patientName.setText("Verlaufsbericht " + patient.getSurname() + " " + patient.getName());
 
         // set the report
         getModel().setDescription(report.getDescription());
