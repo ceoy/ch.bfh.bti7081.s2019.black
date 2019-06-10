@@ -110,7 +110,6 @@ public class DataInit implements ApplicationRunner {
         patient.setStreet("Heilbachrain 17b");
         patient.setSurname("Tim");
         patient.setEvaluationDue(false);
-        patient.setLastEvaluation(LocalDateTime.of(2019, 06, 01, 0, 0));
         return patientRepository.save(patient);
     }
 
@@ -124,7 +123,6 @@ public class DataInit implements ApplicationRunner {
       patient.setStreet("Europaplatz 1b");
       patient.setSurname("Raphael");
       patient.setEvaluationDue(true);
-      patient.setLastEvaluation(LocalDateTime.of(2019, 04, 05, 0, 0));
       return patientRepository.save(patient);
   }
 

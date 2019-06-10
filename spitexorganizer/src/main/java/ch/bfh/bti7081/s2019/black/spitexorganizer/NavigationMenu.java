@@ -2,9 +2,10 @@ package ch.bfh.bti7081.s2019.black.spitexorganizer;
 
 import ch.bfh.bti7081.s2019.black.spitexorganizer.admin.ui.AdminView;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.appointment.ui.AppointmentView;
-import ch.bfh.bti7081.s2019.black.spitexorganizer.appointment.ui.TestView;
-import ch.bfh.bti7081.s2019.black.spitexorganizer.security.SecurityUtil;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.evaluation.ui.EvaluationListView;
+import ch.bfh.bti7081.s2019.black.spitexorganizer.patient.api.PatientApi;
+import ch.bfh.bti7081.s2019.black.spitexorganizer.patient.view.dtos.PatientDto;
+import ch.bfh.bti7081.s2019.black.spitexorganizer.security.SecurityUtil;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.UI;
@@ -14,8 +15,8 @@ import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import com.vaadin.flow.component.polymertemplate.RepeatIndex;
 import com.vaadin.flow.templatemodel.Include;
 import com.vaadin.flow.templatemodel.TemplateModel;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,10 +26,20 @@ public class NavigationMenu extends PolymerTemplate<NavigationMenu.NavigationMen
 
     private List<MenuItem> menuItems = new ArrayList<>();
 
-    public NavigationMenu() {
+    public NavigationMenu(@Autowired PatientApi patientApi) {
+
+        List<PatientDto> allPatients = patientApi.findAll();
+        int counter = 0;
+        for (PatientDto allPatient : allPatients) {
+            if (allPatient.getEvaluationDue()) {
+                counter++;
+            }
+        }
+
+
         // add elements
         menuItems.add(new MenuItem(AppointmentView.class, "Wochenplanung"));
-        menuItems.add(new MenuItem(EvaluationListView.class, "Evaluation"));
+        menuItems.add(new MenuItem(EvaluationListView.class, "Evaluation", counter));
 
         if (SecurityUtil.isUserLoggedIn()) {
 
@@ -55,21 +66,33 @@ public class NavigationMenu extends PolymerTemplate<NavigationMenu.NavigationMen
     }
 
     public interface NavigationMenuModel extends TemplateModel {
-        @Include({"name"})
+        @Include({"name", "notificationCount"})
         void setMenu(List<MenuItem> menu);
     }
 
     public class MenuItem {
         private Class<? extends Component> target;
         private String name;
+        private Integer notificationCount;
+
+        public MenuItem(Class<? extends Component> target, String name, Integer notificationCount) {
+            this.target = target;
+            this.name = name;
+            this.notificationCount = notificationCount;
+        }
 
         public MenuItem(Class<? extends Component> target, String name) {
             this.target = target;
             this.name = name;
+            this.notificationCount = 0;
         }
 
         public String getName() {
             return name;
+        }
+
+        public Integer getNotificationCount() {
+            return notificationCount;
         }
     }
 

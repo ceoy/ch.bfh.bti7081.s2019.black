@@ -61,3 +61,11 @@
 .navbar-link.active {
     color: #33C3F0;
 }
+
+.notification .badge {
+    padding: 5px 7px;
+    border-radius: 50%;
+    background-color: red;
+    color: white;
+}
+

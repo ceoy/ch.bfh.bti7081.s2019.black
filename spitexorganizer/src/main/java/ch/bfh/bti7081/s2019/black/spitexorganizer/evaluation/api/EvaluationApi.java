@@ -1,6 +1,5 @@
 package ch.bfh.bti7081.s2019.black.spitexorganizer.evaluation.api;
 
-import ch.bfh.bti7081.s2019.black.spitexorganizer.appointment.view.dtos.AppointmentDto;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.evaluation.business.EvaluationService;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.evaluation.view.dtos.EvaluationDto;
 import org.springframework.beans.factory.annotation.Autowired;

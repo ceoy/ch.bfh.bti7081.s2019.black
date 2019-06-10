@@ -16,15 +16,22 @@ public class PatientDto {
     private String mail;
 
     public String getFormattedLastEvaluation() {
-        return lastEvaluation.format(DateTimeFormatter.ofPattern("dd.MM.YYYY"));
+        EvaluationDto lastEval = lastEvaluationOrNull();
+        if (lastEval == null || lastEval.getSent() == null) {
+            return "Nie";
+        } else {
+            return lastEval.getSent().format(DateTimeFormatter.ofPattern("dd.MM.YYYY"));
+        }
     }
 
-    public LocalDateTime getLastEvaluation() {
-        return lastEvaluation;
+    private EvaluationDto lastEvaluationOrNull() {
+        List<EvaluationDto> evaluations = getEvaluations();
+        if (evaluations.isEmpty()) return null;
+        return evaluations.get(evaluations.size() - 1);
     }
 
-    public void setLastEvaluation(LocalDateTime lastEvaluation) {
-        this.lastEvaluation = lastEvaluation;
+    public EvaluationDto getLastEvaluation() {
+        return lastEvaluationOrNull();
     }
 
     private String phoneNumber;
@@ -32,8 +39,6 @@ public class PatientDto {
     private String plz;
 
     private String street;
-
-    private LocalDateTime lastEvaluation;
 
     public Boolean getEvaluationDue() {
         return evaluationDue;
