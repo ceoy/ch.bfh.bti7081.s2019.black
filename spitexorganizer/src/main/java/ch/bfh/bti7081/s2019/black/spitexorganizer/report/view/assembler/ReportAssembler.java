@@ -30,7 +30,7 @@ public class ReportAssembler {
         reportDtos.setId(report.getId());
         reportDtos.setDescription(report.getDescription());
         reportDtos.setEdit(report.getEdit());
-        reportDtos.setAppointmentDto(appointmentAssembler.toReportDto(report.getAppointment()));
+        reportDtos.setAppointmentDto(appointmentAssembler.toAppointmentForReportDto(report.getAppointment()));
 
         return reportDtos;
     }
