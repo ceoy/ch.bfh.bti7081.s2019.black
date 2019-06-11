@@ -52,7 +52,6 @@ public class AppointmentDetailView extends PolymerTemplate<AppointmentDetailView
     private Paragraph txtDate;
 
     private AppointmentDto appointment;
-    //private long patientId = appointment.getId();
 
     private AppointmentApi appointmentApi;
 
