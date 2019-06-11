@@ -17,6 +17,10 @@ import com.vaadin.flow.templatemodel.Include;
 import com.vaadin.flow.templatemodel.TemplateModel;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +28,7 @@ import java.util.List;
 @HtmlImport("frontend://src/NavigationMenu.html")
 public class NavigationMenu extends PolymerTemplate<NavigationMenu.NavigationMenuModel> {
 
-    private List<MenuItem> menuItems = new ArrayList<>();
+    private ArrayList<MenuItem> menuItems = new ArrayList<>();
 
     public NavigationMenu(@Autowired PatientApi patientApi) {
 
@@ -35,7 +39,6 @@ public class NavigationMenu extends PolymerTemplate<NavigationMenu.NavigationMen
                 counter++;
             }
         }
-
 
         // add elements
         menuItems.add(new MenuItem(AppointmentView.class, "Wochenplanung"));
@@ -71,6 +74,7 @@ public class NavigationMenu extends PolymerTemplate<NavigationMenu.NavigationMen
     }
 
     public class MenuItem {
+
         private Class<? extends Component> target;
         private String name;
         private Integer notificationCount;

@@ -36,6 +36,8 @@ import java.util.List;
 @Route(value = "appointment", layout = MainLayout.class)
 public class AppointmentDetailView extends PolymerTemplate<AppointmentDetailView.TaskModel> implements RouterLayout, HasUrlParameter<Long> {
 
+    
+
     @Id("patient-name")
     private H1 patientName;
     @Id("txt-name")
@@ -52,7 +54,6 @@ public class AppointmentDetailView extends PolymerTemplate<AppointmentDetailView
     private Paragraph txtDate;
 
     private AppointmentDto appointment;
-    //private long patientId = appointment.getId();
 
     private AppointmentApi appointmentApi;
 

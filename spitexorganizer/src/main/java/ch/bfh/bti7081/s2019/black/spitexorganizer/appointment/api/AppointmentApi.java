@@ -5,6 +5,7 @@ import ch.bfh.bti7081.s2019.black.spitexorganizer.appointment.view.dtos.Appointm
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Component

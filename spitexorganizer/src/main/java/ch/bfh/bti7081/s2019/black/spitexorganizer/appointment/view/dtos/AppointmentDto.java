@@ -4,18 +4,19 @@ import ch.bfh.bti7081.s2019.black.spitexorganizer.patient.view.dtos.PatientDto;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.report.view.dtos.ReportDto;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.task.view.dtos.TaskDto;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-public class AppointmentDto {
+public class AppointmentDto implements Serializable {
     private Long id;
     private LocalDateTime start;
     private LocalDateTime end;
     private List<TaskDto> tasks;
     private PatientDto patient;
     private ReportDto report;
-    
+
 
     public PatientDto getPatient() {
         return patient;
@@ -44,30 +45,31 @@ public class AppointmentDto {
     public LocalDateTime getStart() {
         return start;
     }
-    public String getStartTime(){
-      return start.format(DateTimeFormatter.ofPattern("HH:mm")); 
+
+    public String getStartTime() {
+        return start.format(DateTimeFormatter.ofPattern("HH:mm"));
     }
 
     public void setStart(LocalDateTime start) {
         this.start = start;
     }
-    
-    
+
+
     public LocalDateTime getEnd() {
-      return end;
-  }
-    
-    public String getEndTime(){
-      return end.format(DateTimeFormatter.ofPattern("HH:mm")); 
+        return end;
     }
-    
+
+    public String getEndTime() {
+        return end.format(DateTimeFormatter.ofPattern("HH:mm"));
+    }
+
 
     public void setEnd(LocalDateTime end) {
         this.end = end;
     }
-    
+
     public String getDate() {
-      return end.format(DateTimeFormatter.ofPattern("dd.MM.yyyy")); 
+        return end.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
     }
 
     public List<TaskDto> getTasks() {
