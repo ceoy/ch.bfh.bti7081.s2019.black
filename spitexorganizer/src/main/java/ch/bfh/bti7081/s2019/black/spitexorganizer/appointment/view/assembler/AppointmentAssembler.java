@@ -36,13 +36,22 @@ public class AppointmentAssembler {
     }
 
     public AppointmentDto toDto(Appointment appointment) {
+        AppointmentDto appointmentDto = toAppointmentForReportDto(appointment);
+        appointmentDto.setReport(reportAssembler.toDto(appointment.getReport()));
+        return appointmentDto;
+    }
+
+    /**
+     * this way we don't get a circular reference error when setting the report.
+     */
+    public AppointmentDto toAppointmentForReportDto(Appointment appointment) {
         AppointmentDto appointmentDto = new AppointmentDto();
         appointmentDto.setId(appointment.getId());
         appointmentDto.setStart(appointment.getStart());
         appointmentDto.setEnd(appointment.getEnd());
         appointmentDto.setTasks(taskAssembler.toDtos(appointment.getTasks()));
         appointmentDto.setPatient(patientAssembler.toDto(appointment.getPatient()));
-        appointmentDto.setReport(reportAssembler.toDto(appointment.getReport()));
+
         return appointmentDto;
     }
 }

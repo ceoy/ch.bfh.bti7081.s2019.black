@@ -4,12 +4,9 @@ import ch.bfh.bti7081.s2019.black.spitexorganizer.MainLayout;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.appointment.api.AppointmentApi;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.appointment.view.dtos.AppointmentDto;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.encoder.LongToStringEncoder;
-import ch.bfh.bti7081.s2019.black.spitexorganizer.evaluation.ui.EvaluationViewCreate;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.patient.view.dtos.PatientDto;
-import ch.bfh.bti7081.s2019.black.spitexorganizer.report.api.ReportApi;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.report.ui.ReportEditView;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.report.ui.ReportView;
-import ch.bfh.bti7081.s2019.black.spitexorganizer.report.view.dtos.ReportDto;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.task.api.TaskApi;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.task.view.dtos.TaskDto;
 import com.vaadin.flow.component.Tag;
@@ -56,7 +53,7 @@ public class AppointmentDetailView extends PolymerTemplate<AppointmentDetailView
 
     private AppointmentDto appointment;
     //private long patientId = appointment.getId();
-    
+
     private AppointmentApi appointmentApi;
 
     private TaskApi taskApi;
@@ -75,7 +72,7 @@ public class AppointmentDetailView extends PolymerTemplate<AppointmentDetailView
             String googleMapsString = "https://www.google.com/maps/search/?api=1&query=";
             UI.getCurrent().getPage().executeJavaScript("window.open(\"" + googleMapsString + linkToGoogleMaps + "\", \"_blank\");");
         } catch (UnsupportedEncodingException e) {
-            new Notification("Die Addresse konnte nicht geöffnet werden.", 3000).open();
+            Notification.show("Der Link zu Google Maps konnte nicht geöffnet werden.");
         }
     }
 
@@ -96,7 +93,7 @@ public class AppointmentDetailView extends PolymerTemplate<AppointmentDetailView
 
         // set values to view
         String patientFullName = patient.getSurname() + " " + patient.getName();
-        this.patientName.setText(patientFullName);
+        this.patientName.setText("Termin " + patientFullName);
         this.txtName.setText(patientFullName);
         this.txtStreet.setText(patient.getStreet());
         this.txtCity.setText(patient.getPlz() + " " + patient.getCity());

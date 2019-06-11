@@ -37,20 +37,9 @@ public class Patient {
 
     @Column(name = "City", nullable = false)
     private String city;
-    
-    public LocalDateTime getLastEvaluation() {
-      return lastEvaluation;
-    }
-
-    public void setLastEvaluation(LocalDateTime lastEvaluation) {
-      this.lastEvaluation = lastEvaluation;
-    }
 
     @Column(name = "EvaluationDue", nullable = false)
     private Boolean evaluationDue;
-    
-    @Column(name = "LastEvaluation", nullable = false)
-    private LocalDateTime lastEvaluation;
 
     public Boolean getEvaluationDue() {
       return evaluationDue;

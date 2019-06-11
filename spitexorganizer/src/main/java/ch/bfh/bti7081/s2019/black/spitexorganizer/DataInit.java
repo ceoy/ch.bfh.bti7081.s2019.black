@@ -10,11 +10,13 @@ import ch.bfh.bti7081.s2019.black.spitexorganizer.patient.dataaccess.PatientRepo
 import ch.bfh.bti7081.s2019.black.spitexorganizer.patient.model.Patient;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.report.dataaccess.ReportRepository;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.report.model.Report;
+import ch.bfh.bti7081.s2019.black.spitexorganizer.security.Role;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.task.dataaccess.TaskRepository;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.task.model.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -26,28 +28,33 @@ import java.util.stream.Collectors;
 @Component
 public class DataInit implements ApplicationRunner {
 
-    @Autowired
-    private AppointmentRepository appointmentRepository;
+    private final AppointmentRepository appointmentRepository;
+    private final PatientRepository patientRepository;
+    private final ReportRepository reportRepository;
+    private final EmployeeRepository employeeRepository;
+    private final TaskRepository taskRepository;
+    private final EvaluationRepository evaluationRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    private PatientRepository patientRepository;
-
-    @Autowired
-    private ReportRepository reportRepository;
-
-    @Autowired
-    private EmployeeRepository employeeRepository;
-
-    @Autowired
-    private TaskRepository taskRepository;
-
-    @Autowired
-    private EvaluationRepository evaluationRepository;
+    public DataInit(AppointmentRepository appointmentRepository, PatientRepository patientRepository, ReportRepository reportRepository, EmployeeRepository employeeRepository, TaskRepository taskRepository, EvaluationRepository evaluationRepository, PasswordEncoder passwordEncoder) {
+        this.appointmentRepository = appointmentRepository;
+        this.patientRepository = patientRepository;
+        this.reportRepository = reportRepository;
+        this.employeeRepository = employeeRepository;
+        this.taskRepository = taskRepository;
+        this.evaluationRepository = evaluationRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     @Override
     public void run(ApplicationArguments args) {
 
-        Employee employee = createSpitexMitarbeiter();
+        // create an admin account
+        createAdmin();
+
+        Employee employee = createSpitexEmployee();
+
 
         Patient patient = createPatient();
         Patient patient2 = createPatient2();
@@ -97,13 +104,12 @@ public class DataInit implements ApplicationRunner {
         Patient patient = new Patient();
         patient.setCity("Lyss");
         patient.setMail("tim@jahn.ch");
-        patient.setPhoneNumber("+41788046226");
+        patient.setPhoneNumber("+ 41788046226");
         patient.setName("Jahn");
         patient.setPlz("3250");
         patient.setStreet("Heilbachrain 17b");
         patient.setSurname("Tim");
         patient.setEvaluationDue(false);
-        patient.setLastEvaluation(LocalDateTime.of(2019, 06, 01, 0, 0));
         return patientRepository.save(patient);
     }
 
@@ -117,9 +123,19 @@ public class DataInit implements ApplicationRunner {
       patient.setStreet("Europaplatz 1b");
       patient.setSurname("Raphael");
       patient.setEvaluationDue(true);
-      patient.setLastEvaluation(LocalDateTime.of(2019, 04, 05, 0, 0));
       return patientRepository.save(patient);
   }
+
+    private void createAdmin(){
+        Employee employee = new Employee();
+        employee.setUsername("admin");
+        employee.setRole(Role.ADMIN);
+        employee.setMail("admin@spitex.ch");
+        employee.setSurname("Hanna");
+        employee.setName("Fischer");
+        employee.setPassword(passwordEncoder.encode("admin"));
+        employeeRepository.save(employee);
+    }
 
     private Report createEmptyReport(Appointment appointment) {
         Report report = new Report();
@@ -129,13 +145,14 @@ public class DataInit implements ApplicationRunner {
         return reportRepository.save(report);
     }
 
-    private Employee createSpitexMitarbeiter() {
+    private Employee createSpitexEmployee() {
         Employee employee = new Employee();
         employee.setUsername("sm1");
+        employee.setRole(Role.USER);
         employee.setMail("sm1@spitex.ch");
         employee.setSurname("Hanna");
         employee.setName("Fischer");
-        employee.setPassword("hahahcleartextpw");
+        employee.setPassword(passwordEncoder.encode("12345"));
 
         return employeeRepository.save(employee);
     }

@@ -3,12 +3,10 @@ package ch.bfh.bti7081.s2019.black.spitexorganizer.evaluation.ui;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.MainLayout;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.evaluation.api.EvaluationApi;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.evaluation.view.dtos.EvaluationDto;
-import ch.bfh.bti7081.s2019.black.spitexorganizer.patient.api.PatientApi;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.patient.view.dtos.PatientDto;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.dependency.HtmlImport;
-import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.Input;
 import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.notification.Notification;
@@ -17,7 +15,6 @@ import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import com.vaadin.flow.router.*;
 import com.vaadin.flow.templatemodel.TemplateModel;
-import org.hibernate.sql.Template;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDateTime;
@@ -27,7 +24,7 @@ import java.time.LocalDateTime;
 @HtmlImport("frontend://src/EvaluationCreate.html")
 @PageTitle("Create Evaluation")
 @Route(value = "evaluation", layout = MainLayout.class)
-public class EvaluationViewCreate extends PolymerTemplate<TemplateModel> implements RouterLayout, HasUrlParameter<Long> {
+public class EvaluationViewCreate extends PolymerTemplate<EvaluationViewCreate.EvaluationCreateModel> implements RouterLayout, HasUrlParameter<Long> {
 
     @Id("txt-name")
     private Paragraph txtName;
@@ -54,14 +51,21 @@ public class EvaluationViewCreate extends PolymerTemplate<TemplateModel> impleme
 
     @EventHandler
     private void handleSend() {
+        if (evaluation.getSent() != null) {
+            Notification.show("Die Evaluation ist bereits abgeschlossen.");
+            return;
+        }
+
         LocalDateTime currentDate = LocalDateTime.now();
+
         evaluation.setText(txtSaved.getValue());
         evaluation.setSent(currentDate);
         evaluation.getPatient().setEvaluationDue(false);
-        evaluation.getPatient().setLastEvaluation(currentDate);
         evaluationApi.update(evaluation);
 
         Notification.show("Evaluation abgeschickt");
+
+        UI.getCurrent().getPage().reload();
     }
 
     @EventHandler
@@ -72,10 +76,16 @@ public class EvaluationViewCreate extends PolymerTemplate<TemplateModel> impleme
 
     @EventHandler
     private void handleSave() {
+        if (evaluation.getSent() != null) {
+            Notification.show("Die Evaluation ist bereits abgeschlossen.");
+            return;
+        }
+
         evaluation.setText(txtSaved.getValue());
         evaluationApi.update(evaluation);
 
         Notification.show("Evaluation gespeichert");
+        UI.getCurrent().getPage().reload();
     }
 
     @Override
@@ -98,5 +108,11 @@ public class EvaluationViewCreate extends PolymerTemplate<TemplateModel> impleme
         this.txtPhone.setText(patient.getPhoneNumber());
         this.txtMail.setText(patient.getMail());
         this.txtSaved.setValue(evaluationDto.getText());
+
+        getModel().setEditable(evaluationDto.getSent() == null);
+    }
+
+    public interface EvaluationCreateModel extends TemplateModel {
+        void setEditable(boolean editable);
     }
 }

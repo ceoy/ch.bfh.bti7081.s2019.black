@@ -54,6 +54,19 @@
 			<artifactId>paper-input</artifactId>
 			<version>2.1.1</version>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars.bowergithub.polymerelements</groupId>
+			<artifactId>iron-form</artifactId>
+			<version>2.4.0</version>
+		</dependency>
 	</dependencies>
 
 	<dependencyManagement>
@@ -65,7 +78,6 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
-
 		</dependencies>
 	</dependencyManagement>
 

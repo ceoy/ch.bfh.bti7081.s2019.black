@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
-    @Query(nativeQuery = true,value = "SELECT * FROM EMPLOYEE WHERE ID IN (SELECT a.EMPLOYEE_ID FROM APPOINTMENT AS a WHERE a.ID = ?)")
+    @Query(nativeQuery = true, value = "SELECT * FROM EMPLOYEE WHERE ID IN (SELECT a.EMPLOYEE_ID FROM APPOINTMENT AS a WHERE a.ID = ?)")
     Employee findByAppointmentId(long id);
+
+    Employee findByUsername(String username);
 }

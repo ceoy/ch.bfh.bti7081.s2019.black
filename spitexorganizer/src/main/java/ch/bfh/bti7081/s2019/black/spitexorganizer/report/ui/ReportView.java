@@ -1,7 +1,9 @@
 package ch.bfh.bti7081.s2019.black.spitexorganizer.report.ui;
+
 import ch.bfh.bti7081.s2019.black.spitexorganizer.MainLayout;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.report.api.ReportApi;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.report.view.dtos.ReportDto;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -17,16 +19,20 @@ import java.util.List;
 @PageTitle("Verlaufsberichte")
 public class ReportView extends VerticalLayout implements HasUrlParameter<Long> {
 
-    @Autowired ReportApi reportApi;
+    @Autowired
+    ReportApi reportApi;
 
     @Override
-    public void setParameter(BeforeEvent beforeEvent, Long aLong){
-    //long is the patient id
+    public void setParameter(BeforeEvent beforeEvent, Long aLong) {
+        //long is the patient id
         List<ReportDto> reports = reportApi.findByPatientId(aLong);
         Grid<ReportDto> grid = new Grid<>();
         grid.setItems(reports);
-        grid.addColumn(ReportDto::getId);
-        grid.addColumn(ReportDto::getDescription);
+        grid.addColumn(ReportDto::getId).setHeader("Id");
+        grid.addColumn(ReportDto::getDescription).setHeader("Beschreibung");
+        grid.addColumn(reportDto -> (reportDto.getEdit()) ? "Nicht Abgeschlossen" : "Abgeschlossen").setHeader("Status");
+
+        grid.addItemClickListener(reportDtoItemClickEvent -> UI.getCurrent().navigate(ReportEditView.class, reportDtoItemClickEvent.getItem().getAppointmentDto().getId()));
         H1 title = new H1("Alle Verlaufsberichte");
         this.add(title);
         this.add(grid);

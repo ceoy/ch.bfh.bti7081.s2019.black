@@ -1,0 +1,51 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/polymer/lib/mixins/gesture-event-listeners.html">
+<link rel="import" href="../bower_components/iron-form/iron-form.html">
+
+<!-- Defines the hello-world element -->
+<dom-module id="login-view">
+    <link rel="import" href="../style/skeleton.min.css" type="css">
+    <link rel="import" href="../style/custom.css" type="css">
+    <link rel="import" href="../style/normalize.min.css" type="css">
+
+    <template>
+        <div class="container">
+            <!-- Input element that shows the greeting from the model -->
+            <h1>Login zu Spitexorganizer</h1>
+            <p>Bitte logen Sie sich ein um diese Applikation zu gebrauchen.</p>
+            <iron-form class="login" id="form" allow-redirect>
+                <form method="post" action="login">
+                    <label for="username">Username</label>
+                    <input class="u-full-width" type="text" id="username" name="username" required
+                           autofocus>
+
+                    <label for="password">Passwort</label>
+                    <input class="u-full-width" type="password" id="password" name="password" required>
+
+                    <button class="button-primary" on-tap="login" value="Login">Login</button>
+                </form>
+            </iron-form>
+        </div>
+    </template>
+
+    <!-- Polymer boilerplate to register the hello-world element -->
+    <script>
+        class LoginView extends Polymer.GestureEventListeners(Polymer.Element) {
+            static get is() {
+                return 'login-view';
+            }
+
+            static get properties() {
+                return {};
+            }
+
+            login() {
+                if (!this.$.username.invalid && !this.$.password.invalid) {
+                    this.$.form.submit();
+                }
+            }
+        }
+
+        customElements.define(LoginView.is, LoginView);
+    </script>
+</dom-module>

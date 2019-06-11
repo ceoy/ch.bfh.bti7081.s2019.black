@@ -4,6 +4,8 @@ import ch.bfh.bti7081.s2019.black.spitexorganizer.evaluation.dataaccess.Evaluati
 import ch.bfh.bti7081.s2019.black.spitexorganizer.evaluation.model.Evaluation;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.evaluation.view.assembler.EvaluationAssembler;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.evaluation.view.dtos.EvaluationDto;
+import ch.bfh.bti7081.s2019.black.spitexorganizer.patient.dataaccess.PatientRepository;
+import ch.bfh.bti7081.s2019.black.spitexorganizer.patient.model.Patient;
 import ch.bfh.bti7081.s2019.black.spitexorganizer.report.business.ReportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,9 @@ public class EvaluationService {
 
     @Autowired
     EvaluationAssembler evaluationAssembler;
+
+    @Autowired
+    PatientRepository patientRepository;
 
     @Autowired
     ReportService reportService;
@@ -36,7 +41,14 @@ public class EvaluationService {
         if (evaluation == null) return;
 
         evaluation.setText(evaluationDto.getText());
+        evaluation.setSent(evaluationDto.getSent());
+
         evaluationRepository.save(evaluation);
+        Patient patient = patientRepository.findById(evaluation.getPatient().getId()).orElse(null);
+        if (patient == null) return;
+
+        patient.setEvaluationDue(evaluationDto.getPatient().getEvaluationDue());
+        patientRepository.save(patient);
     }
 
     public List<EvaluationDto> findAll() {

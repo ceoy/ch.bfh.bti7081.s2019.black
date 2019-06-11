@@ -1,6 +1,7 @@
 package ch.bfh.bti7081.s2019.black.spitexorganizer.patient.view.dtos;
 
 import ch.bfh.bti7081.s2019.black.spitexorganizer.evaluation.view.dtos.EvaluationDto;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -14,12 +15,23 @@ public class PatientDto {
 
     private String mail;
 
-    public String getLastEvaluation() {
-      return lastEvaluation.format(DateTimeFormatter.ofPattern("dd.MM.YYYY"));
+    public String getFormattedLastEvaluation() {
+        EvaluationDto lastEval = lastEvaluationOrNull();
+        if (lastEval == null || lastEval.getSent() == null) {
+            return "Nie";
+        } else {
+            return lastEval.getSent().format(DateTimeFormatter.ofPattern("dd.MM.YYYY"));
+        }
     }
 
-    public void setLastEvaluation(LocalDateTime lastEvaluation) {
-      this.lastEvaluation = lastEvaluation;
+    private EvaluationDto lastEvaluationOrNull() {
+        List<EvaluationDto> evaluations = getEvaluations();
+        if (evaluations.isEmpty()) return null;
+        return evaluations.get(evaluations.size() - 1);
+    }
+
+    public EvaluationDto getLastEvaluation() {
+        return lastEvaluationOrNull();
     }
 
     private String phoneNumber;
@@ -27,19 +39,17 @@ public class PatientDto {
     private String plz;
 
     private String street;
-    
-    private LocalDateTime lastEvaluation;
 
     public Boolean getEvaluationDue() {
-      return evaluationDue;
+        return evaluationDue;
     }
 
     public void setEvaluationDue(Boolean evaluationDue) {
-      this.evaluationDue = evaluationDue;
+        this.evaluationDue = evaluationDue;
     }
 
     private String city;
-    
+
     private Boolean evaluationDue;
 
     private List<EvaluationDto> evaluations;

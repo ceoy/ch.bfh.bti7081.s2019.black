@@ -4,8 +4,8 @@
 <!-- Defines the hello-world element -->
 <dom-module id="navigation-menu">
     <link rel="import" href="../style/custom.css" type="css">
-    <link rel="import" href="../style/normalize.min.css" type="css">
     <link rel="import" href="../style/skeleton.min.css" type="css">
+    <link rel="import" href="../style/normalize.min.css" type="css">
 
     <template>
         <div class="navbar-spacer "></div>
@@ -14,7 +14,12 @@
                 <ul class="navbar-list">
                     <template is="dom-repeat" items="[[menu]]">
                         <li class="navbar-item">
-                            <a class="navbar-link" on-click="handleMenuClick">{{item.name}}</a>
+                            <a class="navbar-link notification" on-click="handleMenuClick">
+                                <span>{{item.name}}</span>
+                                <template is="dom-if" if="[[_BadgeVisible(item.notificationCount)]]">
+                                    <span class="badge">{{item.notificationCount}}</span>
+                                </template>
+                            </a>
                         </li>
                     </template>
                 </ul>
@@ -25,6 +30,10 @@
         class NavigationMenu extends Polymer.Element {
             static get is() {
                 return 'navigation-menu'
+            }
+            
+            _BadgeVisible = function (count) {
+                return count > 0;
             }
         }
 
